@@ -327,15 +327,38 @@ const ChoosePath = () => (
       <div />
     </div>
     <div className="main-container mt-5 d-flex flex-col space-around align-center vh-90">
-      <div className="flex-1 d-flex flex-col align-center justify-center btn w-100">
+      <Link
+        to="/question"
+        className="flex-1 d-flex flex-col align-center justify-center btn w-100 text-normal text-black"
+      >
         <div className="text-bold">New to Chinese?</div>
         <div>Start at the basics</div>
-      </div>
+      </Link>
       <div className="flex-1 d-flex flex-col align-center justify-center btn w-100 border-top-gray">
         <div className="text-bold">Already now some Chinese?</div>
         <div>Try this Placement Test</div>
       </div>
     </div>
+  </div>
+);
+
+const MultipleChoice = () => (
+  <div className="full-screen bg-gray">
+    <div>
+      <div>x</div>
+      <div />
+    </div>
+    <div>What sound does this make?</div>
+    <div>
+      <div>Play</div>
+      <div>你好</div>
+    </div>
+    <div>
+      <div>ni2hao3</div>
+      <div>hao3</div>
+      <div>ni3</div>
+    </div>
+    <div>CHECK</div>
   </div>
 );
 
@@ -346,6 +369,7 @@ const App = () => (
     <Route exact={true} path="/choose-language" component={ChooseLanguage} />
     <Route exact={true} path="/choose-goal" component={ChooseGoal} />
     <Route exact={true} path="/choose-path" component={ChoosePath} />
+    <Route exact={true} path="/question" component={MultipleChoice} />
   </div>
 );
 
