@@ -313,12 +313,39 @@ class Login extends React.Component {
   }
 }
 
+const ChoosePath = () => (
+  <div className="full-screen bg-gray">
+    <div className="top-bar">
+      {isMobile() ? (
+        <Link to="/choose-goal">
+          <img src={arrowLeftBlack} className="top-bar-back-button" />
+        </Link>
+      ) : (
+        <div />
+      )}
+      <div className="text-bold">Choose a path</div>
+      <div />
+    </div>
+    <div className="main-container mt-5 d-flex flex-col space-around align-center vh-90">
+      <div className="flex-1 d-flex flex-col align-center justify-center btn w-100">
+        <div className="text-bold">New to Chinese?</div>
+        <div>Start at the basics</div>
+      </div>
+      <div className="flex-1 d-flex flex-col align-center justify-center btn w-100 border-top-gray">
+        <div className="text-bold">Already now some Chinese?</div>
+        <div>Try this Placement Test</div>
+      </div>
+    </div>
+  </div>
+);
+
 const App = () => (
   <div>
     <Route exact={true} path="/" component={Home} />
     <Route exact={true} path="/login" component={Login} />
     <Route exact={true} path="/choose-language" component={ChooseLanguage} />
     <Route exact={true} path="/choose-goal" component={ChooseGoal} />
+    <Route exact={true} path="/choose-path" component={ChoosePath} />
   </div>
 );
 
