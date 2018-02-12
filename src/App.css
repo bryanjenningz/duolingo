@@ -1,9 +1,3 @@
-.bg-blue {
-  background: #6db2ff;
-}
-.text-white {
-  color: white;
-}
 .full-screen {
   position: absolute;
   top: 0;
@@ -17,12 +11,7 @@
   margin: 0 auto;
   padding: 10px;
 }
-.d-flex {
-  display: flex;
-}
-.flex-col {
-  flex-direction: column;
-}
+
 .vh-100 {
   height: 100vh;
 }
@@ -31,6 +20,13 @@
 }
 .vh-10 {
   height: 10vh;
+}
+
+.d-flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
 }
 .flex-1 {
   flex: 1;
@@ -53,6 +49,7 @@
 .space-around {
   justify-content: space-around;
 }
+
 .btn {
   display: flex;
   justify-content: center;
@@ -64,8 +61,25 @@
   height: 50px;
   border-radius: 100px;
 }
+
 .bg-white {
   background: white;
+}
+.bg-red {
+  background: red;
+}
+.bg-lime {
+  background: lime;
+}
+.bg-orange {
+  background: orange;
+}
+.bg-blue {
+  background: #6db2ff;
+}
+
+.text-white {
+  color: white;
 }
 .text-blue {
   color: #6db2ff;
@@ -76,6 +90,10 @@
 .text-bold {
   font-weight: 600;
 }
+.text-center {
+  text-align: center;
+}
+
 .dot {
   border-radius: 100px;
   transition: width 0.5s, height 0.5s, background 0.5s;
@@ -90,6 +108,7 @@
   height: 8px;
   background: #98c9ff;
 }
+
 .mx-1 {
   margin-left: 10px;
   margin-right: 10px;
@@ -97,6 +116,7 @@
 .z-index-1 {
   z-index: 1;
 }
+
 .cloud {
   left: 100%;
   position: absolute;
@@ -106,9 +126,6 @@
 @keyframes move-left {
   from { left: 100%; }
   to { left: -50%; }
-}
-.text-center {
-  text-align: center;
 }
 .icon {
   height: 10vh;
@@ -123,13 +140,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.bg-red {
-  background: red;
-}
-.bg-lime {
-  background: lime;
-}
-.bg-orange {
-  background: orange;
 }
