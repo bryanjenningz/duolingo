@@ -29,6 +29,9 @@
 .vh-60 {
   height: 60vh;
 }
+.vh-10 {
+  height: 10vh;
+}
 .flex-1 {
   flex: 1;
 }

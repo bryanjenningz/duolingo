@@ -76,7 +76,7 @@ class App extends React.Component {
               </div>
             </div>
           </ReactSwipe>
-          <div className="d-flex align-center justify-center z-index-1">
+          <div className="d-flex align-center justify-center z-index-1 vh-10">
             {range(4).map(i => (
               <div
                 key={i}
