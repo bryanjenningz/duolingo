@@ -36,17 +36,17 @@ class App extends React.Component {
           </div>
         </div>
         <div>
-          <img src={cloud} className="cloud" style={{ left: '50%', top: 0 }} />
           <img
             src={cloud}
             className="cloud"
-            style={{ left: '10%', top: '30vh' }}
+            style={{ top: 0, animationDelay: '10s' }}
           />
           <img
             src={cloud}
             className="cloud"
-            style={{ left: '70%', top: '60vh' }}
+            style={{ top: '30vh', animationDelay: '20s' }}
           />
+          <img src={cloud} className="cloud" style={{ top: '60vh' }} />
         </div>
       </div>
     );

@@ -85,6 +85,12 @@
   z-index: 1;
 }
 .cloud {
+  left: 100%;
   position: absolute;
   height: 120px;
+  animation: move-left infinite 40s linear;
+}
+@keyframes move-left {
+  from { left: 100%; }
+  to { left: -50%; }
 }
