@@ -20,7 +20,13 @@ class App extends React.Component {
     return (
       <div className="bg-blue text-white full-screen">
         <div className="main-container d-flex flex-col vh-100">
-          <ReactSwipe className="flex-2" swipeOptions={{ continuous: false }}>
+          <ReactSwipe
+            className="flex-2"
+            swipeOptions={{
+              continuous: false,
+              callback: (i: number) => this.setState({ slideIndex: i })
+            }}
+          >
             <div className="d-flex flex-col z-index-1 vh-60">
               <div className="flex-1 d-flex flex-col justify-end align-center text-xl text-bold">
                 duolingo
