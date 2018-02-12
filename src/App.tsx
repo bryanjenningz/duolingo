@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+const cloud = require('./cloud.svg');
 
 const range = (n: number): number[] => Array.from({ length: n }, (_, i) => i);
 
@@ -13,7 +14,7 @@ class App extends React.Component {
     return (
       <div className="bg-blue text-white full-screen">
         <div className="main-container d-flex flex-col vh-100">
-          <div className="flex-2 d-flex flex-col">
+          <div className="flex-2 d-flex flex-col z-index-1">
             <div className="flex-1 d-flex flex-col justify-end align-center text-xl text-bold">
               duolingo
             </div>
@@ -29,10 +30,23 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-          <div className="flex-1 d-flex flex-col space-around align-center">
+          <div className="flex-1 d-flex flex-col space-around align-center z-index-1">
             <div className="btn btn-block bg-white text-blue">GET STARTED</div>
             <div className="btn">I ALREADY HAVE AN ACCOUNT</div>
           </div>
+        </div>
+        <div>
+          <img src={cloud} className="cloud" style={{ left: '50%', top: 0 }} />
+          <img
+            src={cloud}
+            className="cloud"
+            style={{ left: '10%', top: '30vh' }}
+          />
+          <img
+            src={cloud}
+            className="cloud"
+            style={{ left: '70%', top: '60vh' }}
+          />
         </div>
       </div>
     );
