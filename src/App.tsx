@@ -14,19 +14,17 @@ class App extends React.Component {
       <div className="bg-blue text-white full-screen">
         <div className="main-container d-flex flex-col vh-100">
           <div className="flex-2 d-flex flex-col">
-            <div className="flex-1 d-flex flex-col justify-end align-center">
+            <div className="flex-1 d-flex flex-col justify-end align-center text-xl text-bold">
               duolingo
             </div>
             <div className="flex-1 d-flex flex-col space-around align-center">
               <div>Free language education for the world.</div>
-              <div className="d-flex">
+              <div className="d-flex align-center">
                 {range(4).map(i => (
                   <div
                     key={i}
-                    className={`dot ${i === slideIndex ? 'big' : 'small'}`}
-                  >
-                    .
-                  </div>
+                    className={`dot mx-1 ${i === slideIndex ? 'lg' : 'sm'}`}
+                  />
                 ))}
               </div>
             </div>

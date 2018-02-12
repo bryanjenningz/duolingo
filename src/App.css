@@ -57,3 +57,26 @@
 .text-blue {
   color: #6db2ff;
 }
+.text-xl {
+  font-size: 50px;
+}
+.text-bold {
+  font-weight: 600;
+}
+.dot {
+  border-radius: 100px;
+}
+.dot.lg {
+  width: 18px;
+  height: 18px;
+  background: white;
+}
+.dot.sm {
+  width: 8px;
+  height: 8px;
+  background: #98c9ff;
+}
+.mx-1 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
