@@ -75,6 +75,7 @@
 }
 .dot {
   border-radius: 100px;
+  transition: width 0.5s, height 0.5s, background 0.5s;
 }
 .dot.lg {
   width: 18px;
