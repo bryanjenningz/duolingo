@@ -18,8 +18,8 @@
 .vh-60 {
   height: 60vh;
 }
-.vh-10 {
-  height: 10vh;
+.vh-5 {
+  height: 5vh;
 }
 
 .d-flex {
@@ -33,6 +33,9 @@
 }
 .flex-2 {
   flex: 2;
+}
+.flex-3 {
+  flex: 3;
 }
 .justify-end {
   justify-content: flex-end;

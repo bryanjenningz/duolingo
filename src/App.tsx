@@ -26,7 +26,7 @@ class App extends React.Component {
       <div className="bg-blue text-white full-screen">
         <div className="main-container d-flex flex-col vh-100">
           <ReactSwipe
-            className="flex-2"
+            className="flex-3"
             swipeOptions={{
               continuous: false,
               callback: (i: number) => this.setState({ slideIndex: i })
@@ -81,7 +81,7 @@ class App extends React.Component {
               </div>
             </div>
           </ReactSwipe>
-          <div className="d-flex align-center justify-center z-index-1 vh-10">
+          <div className="d-flex align-center justify-center z-index-1 vh-5">
             {isMobile()
               ? range(4).map(i => (
                   <div
@@ -91,9 +91,11 @@ class App extends React.Component {
                 ))
               : null}
           </div>
-          <div className="flex-1 d-flex flex-col space-around align-center z-index-1">
+          <div className="flex-2 d-flex flex-col space-around align-center z-index-1">
             <div className="btn btn-block bg-white text-blue">GET STARTED</div>
             <div className="btn btn-block">I ALREADY HAVE AN ACCOUNT</div>
+            {/* extra div below for layout */}
+            <div />
           </div>
         </div>
         <div>
