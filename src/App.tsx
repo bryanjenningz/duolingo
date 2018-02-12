@@ -93,7 +93,7 @@ class App extends React.Component {
           </div>
           <div className="flex-1 d-flex flex-col space-around align-center z-index-1">
             <div className="btn btn-block bg-white text-blue">GET STARTED</div>
-            <div className="btn">I ALREADY HAVE AN ACCOUNT</div>
+            <div className="btn btn-block">I ALREADY HAVE AN ACCOUNT</div>
           </div>
         </div>
         <div>
