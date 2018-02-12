@@ -14,6 +14,7 @@
 .main-container {
   max-width: 600px;
   margin: 0 auto;
+  padding: 10px;
 }
 .d-flex {
   display: flex;
@@ -38,4 +39,21 @@
 }
 .space-around {
   justify-content: space-around;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-block {
+  width: 100%;
+  height: 50px;
+  border-radius: 100px;
+}
+.bg-white {
+  background: white;
+}
+.text-blue {
+  color: #6db2ff;
 }
