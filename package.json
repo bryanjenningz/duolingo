@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts-ts": "2.13.0"
+    "react-scripts-ts": "2.13.0",
+    "react-swipe": "^5.1.1",
+    "swipe-js-iso": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts-ts start",
