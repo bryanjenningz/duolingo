@@ -10,6 +10,11 @@ const ReactSwipe = require('react-swipe');
 
 const range = (n: number): number[] => Array.from({ length: n }, (_, i) => i);
 
+const isMobile = (): boolean =>
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
 type State = { slideIndex: number };
 
 class App extends React.Component {
@@ -77,12 +82,14 @@ class App extends React.Component {
             </div>
           </ReactSwipe>
           <div className="d-flex align-center justify-center z-index-1 vh-10">
-            {range(4).map(i => (
-              <div
-                key={i}
-                className={`dot mx-1 ${i === slideIndex ? 'lg' : 'sm'}`}
-              />
-            ))}
+            {isMobile()
+              ? range(4).map(i => (
+                  <div
+                    key={i}
+                    className={`dot mx-1 ${i === slideIndex ? 'lg' : 'sm'}`}
+                  />
+                ))
+              : null}
           </div>
           <div className="flex-1 d-flex flex-col space-around align-center z-index-1">
             <div className="btn btn-block bg-white text-blue">GET STARTED</div>
