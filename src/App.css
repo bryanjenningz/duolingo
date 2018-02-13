@@ -184,3 +184,52 @@
   padding-bottom: 15px;
   padding-left: 10px;
 }
+
+.input-block {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  padding: 10px;
+  font-size: 18px;
+}
+.border-top-gray {
+  border-top: 1px solid #eee;
+}
+.border-white {
+  border: 2px solid white;
+}
+.mb-1 {
+  margin-bottom: 10px;
+}
+.mb-3 {
+  margin-bottom: 30px;
+}
+.mr-1 {
+  margin-right: 10px;
+}
+.mr-2 {
+  margin-right: 20px;
+}
+.ml-1 {
+  margin-left: 10px;
+}
+.btn-icon {
+  height: 20px;
+}
+.bg-dark-blue {
+  background: #3e3ede;
+}
+.text-black {
+  color: black;
+}
+.w-50 {
+  width: 50%;
+}
+
+.social-login-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}

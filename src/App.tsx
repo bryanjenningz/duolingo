@@ -7,6 +7,8 @@ const chartBar = require('./chartBar.svg');
 const heart = require('./heart.svg');
 const chartLine = require('./chartLine.svg');
 const arrowLeft = require('./arrowLeft.svg');
+const google = require('./google.svg');
+const facebook = require('./facebook.svg');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -100,7 +102,9 @@ class Home extends React.Component {
             >
               GET STARTED
             </Link>
-            <div className="btn btn-block">I ALREADY HAVE AN ACCOUNT</div>
+            <Link to="login" className="btn btn-block text-white text-normal">
+              I ALREADY HAVE AN ACCOUNT
+            </Link>
             {/* extra div below for layout */}
             <div />
           </div>
@@ -164,10 +168,68 @@ const ChooseLanguage = () => (
   </div>
 );
 
+type LoginState = { email: string; password: string };
+
+class Login extends React.Component {
+  state: LoginState = { email: '', password: '' };
+
+  render() {
+    const { email, password } = this.state;
+    return (
+      <div className="full-screen bg-blue text-white">
+        <div className="top-bar bg-blue text-white">
+          {isMobile() ? (
+            <Link to="/">
+              <img src={arrowLeft} className="top-bar-back-button" />
+            </Link>
+          ) : (
+            <div />
+          )}
+          <div>Sign In</div>
+          <div />
+        </div>
+        <div className="main-container mt-5 bg-blue text-white">
+          <input
+            value={email}
+            onChange={e => this.setState({ email: e.target.value })}
+            placeholder="Username or email"
+            className="input-block"
+          />
+          <input
+            value={password}
+            onChange={e => this.setState({ password: e.target.value })}
+            placeholder="Password"
+            className="input-block border-top-gray mb-3"
+          />
+          <div className="btn btn-block border-white mb-3">SIGN IN</div>
+          <div className="btn btn-block">FORGOT PASSWORD</div>
+        </div>
+        <div className="social-login-container">
+          <div className="main-container">
+            <div className="mb-1">One-tap Sign In</div>
+            <div className="d-flex">
+              <div className="btn btn-block bg-white text-black mr-1">
+                <img src={google} className="btn-icon mr-2" />
+                <div>GOOGLE</div>
+              </div>
+
+              <div className="btn btn-block bg-dark-blue ml-1">
+                <img src={facebook} className="btn-icon mr-2" />
+                <div>FACEBOOK</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 const App = () => (
   <div>
     <Route exact={true} path="/" component={Home} />
     <Route exact={true} path="/choose-language" component={ChooseLanguage} />
+    <Route exact={true} path="/login" component={Login} />
   </div>
 );
 
