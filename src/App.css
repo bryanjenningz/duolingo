@@ -96,6 +96,9 @@
 .text-center {
   text-align: center;
 }
+.text-normal {
+  text-decoration: none;
+}
 
 .dot {
   border-radius: 100px;
@@ -143,4 +146,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.top-bar-back-button {
+  height: 20px;
+}
+.mt-5 {
+  margin-top: 50px;
+}
+
+.language-container {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.language-container > .flag {
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 30px;
+  flex: 1;
+  padding-bottom: 15px;
+}
+.language-container > .language {
+  border-bottom: 1px solid #ddd;
+  flex: 9;
+  padding-bottom: 15px;
+  padding-left: 10px;
 }

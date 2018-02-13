@@ -6,7 +6,9 @@ const trophy = require('./trophy.svg');
 const chartBar = require('./chartBar.svg');
 const heart = require('./heart.svg');
 const chartLine = require('./chartLine.svg');
+const arrowLeft = require('./arrowLeft.svg');
 const ReactSwipe = require('react-swipe');
+import { Route, Link } from 'react-router-dom';
 
 const range = (n: number): number[] => Array.from({ length: n }, (_, i) => i);
 
@@ -17,7 +19,7 @@ const isMobile = (): boolean =>
 
 type State = { slideIndex: number };
 
-class App extends React.Component {
+class Home extends React.Component {
   state: State = { slideIndex: 0 };
 
   render() {
@@ -92,7 +94,12 @@ class App extends React.Component {
               : null}
           </div>
           <div className="flex-2 d-flex flex-col space-around align-center z-index-1">
-            <div className="btn btn-block bg-white text-blue">GET STARTED</div>
+            <Link
+              to="choose-language"
+              className="btn btn-block bg-white text-blue text-normal"
+            >
+              GET STARTED
+            </Link>
             <div className="btn btn-block">I ALREADY HAVE AN ACCOUNT</div>
             {/* extra div below for layout */}
             <div />
@@ -115,5 +122,53 @@ class App extends React.Component {
     );
   }
 }
+
+const languages: { flag: string; language: string }[] = [
+  { flag: '🇺🇸', language: 'English' },
+  { flag: '🇫🇷', language: 'French' },
+  { flag: '🇪🇸', language: 'Spanish' },
+  { flag: '🇮🇹', language: 'Italian' },
+  { flag: '🇷🇺', language: 'Russian' },
+  { flag: '🇯🇵', language: 'Japanese' },
+  { flag: '🇰🇷', language: 'Korean' },
+  { flag: '🇩🇪', language: 'German' },
+  { flag: '🇨🇳', language: 'Mandarin' },
+  { flag: '🇧🇷', language: 'Portuguese' },
+  { flag: '🇳🇱', language: 'Dutch' },
+  { flag: '🇮🇪', language: 'Irish' },
+  { flag: '🇩🇰', language: 'Danish' },
+  { flag: '🇸🇪', language: 'Swedish' }
+];
+
+const ChooseLanguage = () => (
+  <div>
+    <div className="top-bar bg-blue text-white">
+      {isMobile() ? (
+        <Link to="/">
+          <img src={arrowLeft} className="top-bar-back-button" />
+        </Link>
+      ) : (
+        <div />
+      )}
+      <div>I want to learn...</div>
+      <div />
+    </div>
+    <div className="mt-5 main-container">
+      {languages.map(({ flag, language }) => (
+        <div key={language} className="language-container">
+          <div className="flag">{flag}</div>
+          <div className="language">{language}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const App = () => (
+  <div>
+    <Route exact={true} path="/" component={Home} />
+    <Route exact={true} path="/choose-language" component={ChooseLanguage} />
+  </div>
+);
 
 export default App;
