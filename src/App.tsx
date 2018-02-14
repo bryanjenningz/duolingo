@@ -97,12 +97,12 @@ class Home extends React.Component {
           </div>
           <div className="flex-2 d-flex flex-col space-around align-center z-index-1">
             <Link
-              to="choose-language"
+              to="/choose-language"
               className="btn btn-block bg-white text-blue text-normal"
             >
               GET STARTED
             </Link>
-            <Link to="login" className="btn btn-block text-white text-normal">
+            <Link to="/login" className="btn btn-block text-white text-normal">
               I ALREADY HAVE AN ACCOUNT
             </Link>
             {/* extra div below for layout */}
@@ -159,10 +159,14 @@ const ChooseLanguage = () => (
     </div>
     <div className="mt-5 main-container">
       {languages.map(({ flag, language }) => (
-        <div key={language} className="language-container">
+        <Link
+          to="/choose-goal"
+          key={language}
+          className="language-container text-normal text-black"
+        >
           <div className="flag">{flag}</div>
           <div className="language">{language}</div>
-        </div>
+        </Link>
       ))}
     </div>
   </div>
