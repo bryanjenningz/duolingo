@@ -136,11 +136,18 @@ type CheckboxProps = {
 };
 
 const Checkbox = ({ isChecked, text, minutes, onClick }: CheckboxProps) => (
-  <div className="border-top-gray checkbox" onClick={onClick}>
-    <div className={`checkbox-circle-container ${isChecked ? 'selected' : ''}`}>
-      <div className={`checkbox-circle ${isChecked ? 'selected' : ''}`} />
+  <div
+    className={`${minutes === 5 ? '' : 'border-top-gray'} checkbox`}
+    onClick={onClick}
+  >
+    <div className="d-flex align-center">
+      <div
+        className={`checkbox-circle-container ${isChecked ? 'selected' : ''}`}
+      >
+        <div className={`checkbox-circle ${isChecked ? 'selected' : ''}`} />
+      </div>
+      <div className="ml-1">{text}</div>
     </div>
-    <div>{text}</div>
     <div className="text-faded">{minutes} minutes a day</div>
   </div>
 );
