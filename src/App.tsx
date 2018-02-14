@@ -137,7 +137,7 @@ type CheckboxProps = {
 
 const Checkbox = ({ isChecked, text, minutes, onClick }: CheckboxProps) => (
   <div
-    className={`${minutes === 5 ? '' : 'border-top-gray'} checkbox`}
+    className={`${minutes === 5 ? '' : 'border-top-gray'} checkbox btn`}
     onClick={onClick}
   >
     <div className="d-flex align-center">
@@ -160,7 +160,7 @@ class ChooseGoal extends React.Component {
   render() {
     const { goal } = this.state;
     return (
-      <div>
+      <div className="full-screen bg-gray">
         <div className="top-bar">
           {isMobile() ? (
             <Link to="/choose-language">
@@ -197,6 +197,7 @@ class ChooseGoal extends React.Component {
             minutes={20}
             onClick={() => this.setState({ goal: 20 })}
           />
+          <div className="btn btn-block bg-green text-white">CONTINUE</div>
         </div>
       </div>
     );

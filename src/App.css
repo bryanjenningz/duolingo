@@ -68,11 +68,17 @@
 .bg-white {
   background: white;
 }
+.bg-gray {
+  background: #eee;
+}
 .bg-red {
   background: red;
 }
 .bg-lime {
   background: lime;
+}
+.bg-green {
+  background: #34d034;
 }
 .bg-orange {
   background: orange;
@@ -199,7 +205,7 @@
   font-size: 18px;
 }
 .border-top-gray {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ccc;
 }
 .border-white {
   border: 2px solid white;
@@ -252,7 +258,7 @@
   width: 30px;
   height: 30px;
   border-radius: 100px;
-  border: 2px solid #eee;
+  border: 2px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
