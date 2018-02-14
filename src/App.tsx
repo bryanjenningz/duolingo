@@ -128,21 +128,73 @@ class Home extends React.Component {
   }
 }
 
-const ChooseGoal = () => (
-  <div>
-    <div className="top-bar">
-      {isMobile() ? (
-        <Link to="/choose-language">
-          <img src={arrowLeftBlack} className="top-bar-back-button" />
-        </Link>
-      ) : (
-        <div />
-      )}
-      <div>Pick a Daily Goal</div>
-      <div />
+type CheckboxProps = {
+  isChecked: boolean;
+  text: string;
+  minutes: Goal;
+  onClick: () => void;
+};
+
+const Checkbox = ({ isChecked, text, minutes, onClick }: CheckboxProps) => (
+  <div className="border-top-gray checkbox" onClick={onClick}>
+    <div className={`checkbox-circle-container ${isChecked ? 'selected' : ''}`}>
+      <div className={`checkbox-circle ${isChecked ? 'selected' : ''}`} />
     </div>
+    <div>{text}</div>
+    <div className="text-faded">{minutes} minutes a day</div>
   </div>
 );
+
+type Goal = 5 | 10 | 15 | 20;
+type ChooseGoalState = { goal: Goal };
+
+class ChooseGoal extends React.Component {
+  state: ChooseGoalState = { goal: 10 };
+  render() {
+    const { goal } = this.state;
+    return (
+      <div>
+        <div className="top-bar">
+          {isMobile() ? (
+            <Link to="/choose-language">
+              <img src={arrowLeftBlack} className="top-bar-back-button" />
+            </Link>
+          ) : (
+            <div />
+          )}
+          <div>Pick a Daily Goal</div>
+          <div />
+        </div>
+        <div className="main-container mt-5">
+          <Checkbox
+            isChecked={goal === 5}
+            text="Casual"
+            minutes={5}
+            onClick={() => this.setState({ goal: 5 })}
+          />
+          <Checkbox
+            isChecked={goal === 10}
+            text="Regular"
+            minutes={10}
+            onClick={() => this.setState({ goal: 10 })}
+          />
+          <Checkbox
+            isChecked={goal === 15}
+            text="Serious"
+            minutes={15}
+            onClick={() => this.setState({ goal: 15 })}
+          />
+          <Checkbox
+            isChecked={goal === 20}
+            text="Insane"
+            minutes={20}
+            onClick={() => this.setState({ goal: 20 })}
+          />
+        </div>
+      </div>
+    );
+  }
+}
 
 const languages: { flag: string; language: string }[] = [
   { flag: '🇺🇸', language: 'English' },

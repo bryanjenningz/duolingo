@@ -233,3 +233,29 @@
   right: 0;
   height: 100px;
 }
+
+.checkbox {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.checkbox-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+.checkbox-circle-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkbox-circle.selected {
+  background: #6db2ff;
+}
+.checkbox-circle-container.selected {
+  border: 2px solid #6db2ff;
+}
