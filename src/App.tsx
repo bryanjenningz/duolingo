@@ -169,7 +169,7 @@ class ChooseGoal extends React.Component {
           ) : (
             <div />
           )}
-          <div>Pick a Daily Goal</div>
+          <div className="text-bold">Pick a Daily Goal</div>
           <div />
         </div>
         <div className="main-container mt-5">
@@ -197,7 +197,12 @@ class ChooseGoal extends React.Component {
             minutes={20}
             onClick={() => this.setState({ goal: 20 })}
           />
-          <div className="btn btn-block bg-green text-white">CONTINUE</div>
+          <Link
+            to="/choose-path"
+            className="btn btn-block bg-green text-white text-normal"
+          >
+            CONTINUE
+          </Link>
         </div>
       </div>
     );
