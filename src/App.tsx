@@ -148,7 +148,7 @@ const Checkbox = ({ isChecked, text, minutes, onClick }: CheckboxProps) => (
       </div>
       <div className="ml-1">{text}</div>
     </div>
-    <div className="text-faded">{minutes} minutes a day</div>
+    <div className="text-gray">{minutes} minutes a day</div>
   </div>
 );
 

@@ -81,6 +81,12 @@
   background: #6db2ff;
 }
 
+.text-black {
+  color: black;
+}
+.text-gray {
+  color: #aaa;
+}
 .text-white {
   color: white;
 }
@@ -218,9 +224,6 @@
 }
 .bg-dark-blue {
   background: #3e3ede;
-}
-.text-black {
-  color: black;
 }
 .w-50 {
   width: 50%;
