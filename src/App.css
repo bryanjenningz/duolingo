@@ -15,6 +15,9 @@
 .vh-100 {
   height: 100vh;
 }
+.vh-90 {
+  height: 90vh;
+}
 .vh-60 {
   height: 60vh;
 }
@@ -51,6 +54,9 @@
 }
 .space-around {
   justify-content: space-around;
+}
+.space-between {
+  justify-content: space-between;
 }
 
 .btn {
@@ -145,6 +151,7 @@
   from { left: 100%; }
   to { left: -50%; }
 }
+
 .icon {
   height: 10vh;
 }

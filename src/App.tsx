@@ -172,31 +172,33 @@ class ChooseGoal extends React.Component {
           <div className="text-bold">Pick a Daily Goal</div>
           <div />
         </div>
-        <div className="main-container mt-5">
-          <Checkbox
-            isChecked={goal === 5}
-            text="Casual"
-            minutes={5}
-            onClick={() => this.setState({ goal: 5 })}
-          />
-          <Checkbox
-            isChecked={goal === 10}
-            text="Regular"
-            minutes={10}
-            onClick={() => this.setState({ goal: 10 })}
-          />
-          <Checkbox
-            isChecked={goal === 15}
-            text="Serious"
-            minutes={15}
-            onClick={() => this.setState({ goal: 15 })}
-          />
-          <Checkbox
-            isChecked={goal === 20}
-            text="Insane"
-            minutes={20}
-            onClick={() => this.setState({ goal: 20 })}
-          />
+        <div className="main-container mt-5 d-flex flex-col space-between vh-90">
+          <div>
+            <Checkbox
+              isChecked={goal === 5}
+              text="Casual"
+              minutes={5}
+              onClick={() => this.setState({ goal: 5 })}
+            />
+            <Checkbox
+              isChecked={goal === 10}
+              text="Regular"
+              minutes={10}
+              onClick={() => this.setState({ goal: 10 })}
+            />
+            <Checkbox
+              isChecked={goal === 15}
+              text="Serious"
+              minutes={15}
+              onClick={() => this.setState({ goal: 15 })}
+            />
+            <Checkbox
+              isChecked={goal === 20}
+              text="Insane"
+              minutes={20}
+              onClick={() => this.setState({ goal: 20 })}
+            />
+          </div>
           <Link
             to="/choose-path"
             className="btn btn-block bg-green text-white text-normal"
