@@ -7,6 +7,7 @@ const chartBar = require('./chartBar.svg');
 const heart = require('./heart.svg');
 const chartLine = require('./chartLine.svg');
 const arrowLeft = require('./arrowLeft.svg');
+const arrowLeftBlack = require('./arrowLeftBlack.svg');
 const google = require('./google.svg');
 const facebook = require('./facebook.svg');
 const ReactSwipe = require('react-swipe');
@@ -127,6 +128,22 @@ class Home extends React.Component {
   }
 }
 
+const ChooseGoal = () => (
+  <div>
+    <div className="top-bar">
+      {isMobile() ? (
+        <Link to="/choose-language">
+          <img src={arrowLeftBlack} className="top-bar-back-button" />
+        </Link>
+      ) : (
+        <div />
+      )}
+      <div>Pick a Daily Goal</div>
+      <div />
+    </div>
+  </div>
+);
+
 const languages: { flag: string; language: string }[] = [
   { flag: '🇺🇸', language: 'English' },
   { flag: '🇫🇷', language: 'French' },
@@ -232,8 +249,9 @@ class Login extends React.Component {
 const App = () => (
   <div>
     <Route exact={true} path="/" component={Home} />
-    <Route exact={true} path="/choose-language" component={ChooseLanguage} />
     <Route exact={true} path="/login" component={Login} />
+    <Route exact={true} path="/choose-language" component={ChooseLanguage} />
+    <Route exact={true} path="/choose-goal" component={ChooseGoal} />
   </div>
 );
 
