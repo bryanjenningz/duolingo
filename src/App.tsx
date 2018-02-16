@@ -10,6 +10,8 @@ const arrowLeft = require('./arrowLeft.svg');
 const arrowLeftBlack = require('./arrowLeftBlack.svg');
 const google = require('./google.svg');
 const facebook = require('./facebook.svg');
+const arrowUpCircle = require('./arrowUpCircle.svg');
+const dotCircle = require('./dotCircle.svg');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -329,14 +331,20 @@ const ChoosePath = () => (
     <div className="main-container mt-5 d-flex flex-col space-around align-center vh-90">
       <Link
         to="/question"
-        className="flex-1 d-flex flex-col align-center justify-center btn w-100 text-normal text-black"
+        className="flex-1 d-flex  btn w-100 text-normal text-black"
       >
-        <div className="text-bold">New to Chinese?</div>
-        <div>Start at the basics</div>
+        <img src={dotCircle} className="path-icon mr-2" />
+        <div>
+          <div className="text-bold">New to Chinese?</div>
+          <div>Start at the basics</div>
+        </div>
       </Link>
-      <div className="flex-1 d-flex flex-col align-center justify-center btn w-100 border-top-gray">
-        <div className="text-bold">Already now some Chinese?</div>
-        <div>Try this Placement Test</div>
+      <div className="flex-1 d-flex btn w-100 border-top-gray">
+        <img src={arrowUpCircle} className="path-icon mr-2" />
+        <div>
+          <div className="text-bold">Already now some Chinese?</div>
+          <div>Try this Placement Test</div>
+        </div>
       </div>
     </div>
   </div>

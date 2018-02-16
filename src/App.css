@@ -279,3 +279,7 @@
 .checkbox-circle-container.selected {
   border: 2px solid #6db2ff;
 }
+
+.path-icon {
+  height: 50px;
+}
