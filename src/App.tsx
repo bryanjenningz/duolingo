@@ -357,10 +357,10 @@ const MultipleChoice = () => (
         <div className="gray-progress-x btn">✕</div>
         <div className="gray-progress-bar" />
       </div>
-      <div>What sound does this make?</div>
-      <div>
-        <div>Play</div>
-        <div>你好</div>
+      <h2 className="text-center">What sound does this make?</h2>
+      <div className="rounded-card">
+        <div className="rounded-card-play-icon">Play</div>
+        <div className="rounded-card-text">你好</div>
       </div>
       <div>
         <div>ni2hao3</div>
