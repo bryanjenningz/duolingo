@@ -319,3 +319,17 @@
   top: 10px;
   height: 30px;
 }
+.multiple-choice-btn {
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+.multiple-choice-btn-circle {
+  border: 2px solid #ccc;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}

@@ -364,9 +364,13 @@ const MultipleChoice = () => (
         <div className="rounded-card-text">你好</div>
       </div>
       <div>
-        <div>ni2hao3</div>
-        <div>hao3</div>
-        <div>ni3</div>
+        {['ni2hao3', 'hao3', 'ni3'].map((text, i) => (
+          <div key={i} className="btn-block multiple-choice-btn">
+            <div className="multiple-choice-btn-circle" />
+            <div>{text}</div>
+            <div />
+          </div>
+        ))}
       </div>
       <div>CHECK</div>
     </div>
