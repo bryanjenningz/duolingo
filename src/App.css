@@ -96,8 +96,11 @@
 .text-black {
   color: black;
 }
-.text-gray {
+.text-dark-gray {
   color: #aaa;
+}
+.text-gray {
+  color: #ccc;
 }
 .text-white {
   color: white;
@@ -284,4 +287,14 @@
   height: 50px;
   background: white;
   border-radius: 100px;
+}
+
+.gray-progress-bar {
+  height: 5px;
+  width: 85%;
+  background: #ccc;
+}
+.gray-progress-x {
+  font-size: 30px;
+  color: #ccc;
 }

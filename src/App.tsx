@@ -150,7 +150,7 @@ const Checkbox = ({ isChecked, text, minutes, onClick }: CheckboxProps) => (
       </div>
       <div className="ml-1">{text}</div>
     </div>
-    <div className="text-gray">{minutes} minutes a day</div>
+    <div className="text-dark-gray">{minutes} minutes a day</div>
   </div>
 );
 
@@ -352,21 +352,23 @@ const ChoosePath = () => (
 
 const MultipleChoice = () => (
   <div className="full-screen bg-gray">
-    <div>
-      <div>x</div>
-      <div />
+    <div className="main-container">
+      <div className="d-flex align-center space-around">
+        <div className="gray-progress-x btn">✕</div>
+        <div className="gray-progress-bar" />
+      </div>
+      <div>What sound does this make?</div>
+      <div>
+        <div>Play</div>
+        <div>你好</div>
+      </div>
+      <div>
+        <div>ni2hao3</div>
+        <div>hao3</div>
+        <div>ni3</div>
+      </div>
+      <div>CHECK</div>
     </div>
-    <div>What sound does this make?</div>
-    <div>
-      <div>Play</div>
-      <div>你好</div>
-    </div>
-    <div>
-      <div>ni2hao3</div>
-      <div>hao3</div>
-      <div>ni3</div>
-    </div>
-    <div>CHECK</div>
   </div>
 );
 
