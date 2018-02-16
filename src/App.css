@@ -77,6 +77,9 @@
 .bg-gray {
   background: #eee;
 }
+.bg-dark-gray {
+  background: #ccc;
+}
 .bg-red {
   background: red;
 }
@@ -98,6 +101,9 @@
 }
 .text-dark-gray {
   color: #aaa;
+}
+.text-darker-gray {
+  color: #888;
 }
 .text-gray {
   color: #ccc;
@@ -326,6 +332,7 @@
   align-items: center;
   padding: 0 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .multiple-choice-btn-circle {
   border: 2px solid #ccc;

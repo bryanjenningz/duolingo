@@ -372,7 +372,7 @@ const MultipleChoice = () => (
           </div>
         ))}
       </div>
-      <div>CHECK</div>
+      <div className="btn btn-block bg-dark-gray text-darker-gray">CHECK</div>
     </div>
   </div>
 );
