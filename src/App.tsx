@@ -12,6 +12,7 @@ const google = require('./google.svg');
 const facebook = require('./facebook.svg');
 const arrowUpCircle = require('./arrowUpCircle.svg');
 const dotCircle = require('./dotCircle.svg');
+const volumeUp = require('./volumeUp.svg');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -359,7 +360,7 @@ const MultipleChoice = () => (
       </div>
       <h2 className="text-center">What sound does this make?</h2>
       <div className="rounded-card">
-        <div className="rounded-card-play-icon">Play</div>
+        <img src={volumeUp} className="rounded-card-play-icon" />
         <div className="rounded-card-text">你好</div>
       </div>
       <div>
