@@ -282,4 +282,6 @@
 
 .path-icon {
   height: 50px;
+  background: white;
+  border-radius: 100px;
 }
