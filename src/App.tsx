@@ -351,31 +351,50 @@ const ChoosePath = () => (
   </div>
 );
 
-const MultipleChoice = () => (
-  <div className="full-screen bg-gray">
-    <div className="main-container">
-      <div className="d-flex align-center space-around">
-        <div className="gray-progress-x btn">✕</div>
-        <div className="gray-progress-bar" />
-      </div>
-      <h2 className="text-center">What sound does this make?</h2>
-      <div className="rounded-card">
-        <img src={volumeUp} className="rounded-card-play-icon" />
-        <div className="rounded-card-text">你好</div>
-      </div>
-      <div>
-        {['ni2hao3', 'hao3', 'ni3'].map((text, i) => (
-          <div key={i} className="btn-block multiple-choice-btn">
-            <div className="multiple-choice-btn-circle" />
-            <div>{text}</div>
-            <div />
+class MultipleChoice extends React.Component {
+  state: { selectedIndex: null | number } = { selectedIndex: null };
+
+  render() {
+    const { selectedIndex } = this.state;
+    return (
+      <div className="full-screen bg-gray">
+        <div className="main-container">
+          <div className="d-flex align-center space-around">
+            <div className="gray-progress-x btn">✕</div>
+            <div className="gray-progress-bar" />
           </div>
-        ))}
+          <h2 className="text-center">What sound does this make?</h2>
+          <div className="rounded-card">
+            <img src={volumeUp} className="rounded-card-play-icon" />
+            <div className="rounded-card-text">你好</div>
+          </div>
+          <div>
+            {['ni2hao3', 'hao3', 'ni3'].map((text, i) => (
+              <div
+                key={i}
+                className="btn-block multiple-choice-btn"
+                onClick={() => this.setState({ selectedIndex: i })}
+              >
+                <div className="multiple-choice-btn-circle" />
+                <div>{text}</div>
+                <div />
+              </div>
+            ))}
+          </div>
+          <div
+            className={`btn btn-block ${
+              selectedIndex === null
+                ? 'bg-dark-gray text-darker-gray'
+                : 'bg-green text-white'
+            }`}
+          >
+            CHECK
+          </div>
+        </div>
       </div>
-      <div className="btn btn-block bg-dark-gray text-darker-gray">CHECK</div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 const App = () => (
   <div>
