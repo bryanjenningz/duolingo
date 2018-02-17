@@ -427,7 +427,11 @@ class MultipleChoice extends React.Component {
             }`}
             onClick={() => {
               if (typeof selectedIndex === 'number') {
-                if (!hasAnswered) {
+                if (hasAnswered) {
+                  if (correctAnswers < correctAnswersNeeded) {
+                    this.setState({ selectedIndex: null, hasAnswered: false });
+                  }
+                } else {
                   this.setState({
                     hasAnswered: true,
                     correctAnswers:
