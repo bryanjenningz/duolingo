@@ -354,6 +354,7 @@ const ChoosePath = () => (
 type MultipleChoiceState = {
   selectedIndex: null | number;
   hasAnswered: boolean;
+  answers: string[];
   correctIndex: number;
   correctAnswers: number;
   correctAnswersNeeded: number;
@@ -362,6 +363,7 @@ class MultipleChoice extends React.Component {
   state: MultipleChoiceState = {
     selectedIndex: null,
     hasAnswered: false,
+    answers: ['ni2hao3', 'hao3', 'ni3'],
     correctIndex: 0,
     correctAnswers: 1,
     correctAnswersNeeded: 5
@@ -371,6 +373,7 @@ class MultipleChoice extends React.Component {
     const {
       selectedIndex,
       hasAnswered,
+      answers,
       correctIndex,
       correctAnswers,
       correctAnswersNeeded
@@ -395,7 +398,7 @@ class MultipleChoice extends React.Component {
             <div className="rounded-card-text">你好</div>
           </div>
           <div>
-            {['ni2hao3', 'hao3', 'ni3'].map((text, i) => (
+            {answers.map((text, i) => (
               <div
                 key={i}
                 className={
@@ -437,9 +440,14 @@ class MultipleChoice extends React.Component {
               selectedIndex === correctIndex ? 'correct' : 'incorrect'
             } ${hasAnswered ? 'shown' : 'hidden'}`}
           >
-            {selectedIndex === correctIndex
-              ? 'You are correct'
-              : 'You are wrong'}
+            <div>
+              {selectedIndex === correctIndex
+                ? 'You are correct'
+                : `Oops, that's not correct.`}
+            </div>
+            {selectedIndex === correctIndex ? null : (
+              <div className="correct-solution">{answers[correctIndex]}</div>
+            )}
           </div>
         </div>
       </div>

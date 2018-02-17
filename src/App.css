@@ -373,11 +373,16 @@
   right: 0;
   height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px 1px;
   transition: bottom 0.3s, display 0.3s;
+}
+.solution-banner > .correct-solution {
+  font-size: 18px;
+  font-weight: 300;
 }
 .solution-banner.correct {
   background: #d7f99c;
