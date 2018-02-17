@@ -372,10 +372,15 @@ class MultipleChoice extends React.Component {
             {['ni2hao3', 'hao3', 'ni3'].map((text, i) => (
               <div
                 key={i}
-                className="btn-block multiple-choice-btn"
+                className={
+                  'btn-block multiple-choice-btn ' +
+                  (selectedIndex === i ? 'selected' : '')
+                }
                 onClick={() => this.setState({ selectedIndex: i })}
               >
-                <div className="multiple-choice-btn-circle" />
+                <div className="multiple-choice-btn-circle">
+                  <div className="circle" />
+                </div>
                 <div>{text}</div>
                 <div />
               </div>

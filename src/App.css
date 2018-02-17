@@ -340,3 +340,19 @@
   height: 20px;
   border-radius: 100px;
 }
+.multiple-choice-btn.selected {
+  border: 2px solid #6db2ff;
+  background: rgba(109, 178, 255, 0.45);
+}
+.multiple-choice-btn.selected > .multiple-choice-btn-circle {
+  border: 2px solid #6db2ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.multiple-choice-btn.selected > .multiple-choice-btn-circle > .circle {
+  border-radius: 100px;
+  background: #6db2ff;
+  width: 12px;
+  height: 12px;
+}
