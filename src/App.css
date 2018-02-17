@@ -310,7 +310,7 @@
   width: 50%;
   height: 30vh;
   margin: 40px auto;
-  box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2px 1px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 1px;
   position: relative;
   display: flex;
   justify-content: center;
