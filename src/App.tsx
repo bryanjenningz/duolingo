@@ -375,7 +375,9 @@ const Modal = ({
           <div className="mr-2 btn" onClick={hideModal}>
             CANCEL
           </div>
-          <div className="mr-2 btn">QUIT</div>
+          <Link to="/choose-path" className="mr-2 btn text-normal text-black">
+            QUIT
+          </Link>
         </div>
       </div>
     </div>
