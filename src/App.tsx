@@ -351,11 +351,15 @@ const ChoosePath = () => (
   </div>
 );
 
+type MultipleChoiceState = {
+  selectedIndex: null | number;
+  hasAnswered: boolean;
+};
 class MultipleChoice extends React.Component {
-  state: { selectedIndex: null | number } = { selectedIndex: null };
+  state: MultipleChoiceState = { selectedIndex: null, hasAnswered: false };
 
   render() {
-    const { selectedIndex } = this.state;
+    const { selectedIndex, hasAnswered } = this.state;
     return (
       <div className="full-screen bg-gray">
         <div className="main-container">
@@ -392,8 +396,20 @@ class MultipleChoice extends React.Component {
                 ? 'bg-dark-gray text-darker-gray'
                 : 'bg-green text-white'
             }`}
+            onClick={() => {
+              if (typeof selectedIndex === 'number') {
+                if (!hasAnswered) {
+                  this.setState({ hasAnswered: true });
+                }
+              }
+            }}
           >
-            CHECK
+            {hasAnswered ? 'CONTINUE' : 'CHECK'}
+          </div>
+          <div
+            className={`solution-banner ${hasAnswered ? 'shown' : 'hidden'}`}
+          >
+            {selectedIndex === 0 ? 'You are correct' : 'You are wrong'}
           </div>
         </div>
       </div>

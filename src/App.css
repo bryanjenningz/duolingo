@@ -10,6 +10,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 10px;
+  position: relative;
 }
 
 .vh-100 {
@@ -355,4 +356,25 @@
   background: #6db2ff;
   width: 12px;
   height: 12px;
+}
+.solution-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #d7f99c;
+  color: #34d034;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px 1px;
+  transition: bottom 0.3s, display 0.3s;
+}
+.solution-banner.shown {
+  bottom: 20%;
+}
+.solution-banner.hidden {
+  bottom: -100%;
 }
