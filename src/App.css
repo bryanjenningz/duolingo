@@ -371,8 +371,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #d7f99c;
-  color: #34d034;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -380,6 +378,14 @@
   font-size: 24px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px 1px;
   transition: bottom 0.3s, display 0.3s;
+}
+.solution-banner.correct {
+  background: #d7f99c;
+  color: #34d034;
+}
+.solution-banner.incorrect {
+  background: pink;
+  color: red;
 }
 .solution-banner.shown {
   bottom: 20%;

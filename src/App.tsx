@@ -402,7 +402,11 @@ class MultipleChoice extends React.Component {
                   'btn-block multiple-choice-btn ' +
                   (selectedIndex === i ? 'selected' : '')
                 }
-                onClick={() => this.setState({ selectedIndex: i })}
+                onClick={() => {
+                  if (!hasAnswered) {
+                    this.setState({ selectedIndex: i });
+                  }
+                }}
               >
                 <div className="multiple-choice-btn-circle">
                   <div className="circle" />
@@ -429,7 +433,9 @@ class MultipleChoice extends React.Component {
             {hasAnswered ? 'CONTINUE' : 'CHECK'}
           </div>
           <div
-            className={`solution-banner ${hasAnswered ? 'shown' : 'hidden'}`}
+            className={`solution-banner ${
+              selectedIndex === correctIndex ? 'correct' : 'incorrect'
+            } ${hasAnswered ? 'shown' : 'hidden'}`}
           >
             {selectedIndex === correctIndex
               ? 'You are correct'
