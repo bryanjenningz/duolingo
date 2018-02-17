@@ -365,7 +365,7 @@ class MultipleChoice extends React.Component {
     hasAnswered: false,
     answers: ['ni2hao3', 'hao3', 'ni3'],
     correctIndex: 0,
-    correctAnswers: 1,
+    correctAnswers: 0,
     correctAnswersNeeded: 5
   };
 
@@ -428,7 +428,11 @@ class MultipleChoice extends React.Component {
             onClick={() => {
               if (typeof selectedIndex === 'number') {
                 if (!hasAnswered) {
-                  this.setState({ hasAnswered: true });
+                  this.setState({
+                    hasAnswered: true,
+                    correctAnswers:
+                      correctAnswers + (selectedIndex === correctIndex ? 1 : 0)
+                  });
                 }
               }
             }}
