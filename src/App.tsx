@@ -354,18 +354,37 @@ const ChoosePath = () => (
 type MultipleChoiceState = {
   selectedIndex: null | number;
   hasAnswered: boolean;
+  correctAnswers: number;
+  correctAnswersNeeded: number;
 };
 class MultipleChoice extends React.Component {
-  state: MultipleChoiceState = { selectedIndex: null, hasAnswered: false };
+  state: MultipleChoiceState = {
+    selectedIndex: null,
+    hasAnswered: false,
+    correctAnswers: 1,
+    correctAnswersNeeded: 5
+  };
 
   render() {
-    const { selectedIndex, hasAnswered } = this.state;
+    const {
+      selectedIndex,
+      hasAnswered,
+      correctAnswers,
+      correctAnswersNeeded
+    } = this.state;
     return (
       <div className="full-screen bg-gray">
         <div className="main-container">
           <div className="d-flex align-center space-around">
             <div className="gray-progress-x btn">✕</div>
-            <div className="gray-progress-bar" />
+            <div className="gray-progress-bar">
+              <div
+                className="bg-green green-progress-bar"
+                style={{
+                  width: `${correctAnswers / correctAnswersNeeded * 100}%`
+                }}
+              />
+            </div>
           </div>
           <h2 className="text-center">What sound does this make?</h2>
           <div className="rounded-card">
