@@ -354,6 +354,7 @@ const ChoosePath = () => (
 type MultipleChoiceState = {
   selectedIndex: null | number;
   hasAnswered: boolean;
+  correctIndex: number;
   correctAnswers: number;
   correctAnswersNeeded: number;
 };
@@ -361,6 +362,7 @@ class MultipleChoice extends React.Component {
   state: MultipleChoiceState = {
     selectedIndex: null,
     hasAnswered: false,
+    correctIndex: 0,
     correctAnswers: 1,
     correctAnswersNeeded: 5
   };
@@ -369,6 +371,7 @@ class MultipleChoice extends React.Component {
     const {
       selectedIndex,
       hasAnswered,
+      correctIndex,
       correctAnswers,
       correctAnswersNeeded
     } = this.state;
@@ -428,7 +431,9 @@ class MultipleChoice extends React.Component {
           <div
             className={`solution-banner ${hasAnswered ? 'shown' : 'hidden'}`}
           >
-            {selectedIndex === 0 ? 'You are correct' : 'You are wrong'}
+            {selectedIndex === correctIndex
+              ? 'You are correct'
+              : 'You are wrong'}
           </div>
         </div>
       </div>
