@@ -351,6 +351,37 @@ const ChoosePath = () => (
   </div>
 );
 
+const Modal = ({
+  isShown,
+  toggleShown
+}: {
+  isShown: boolean;
+  toggleShown: () => void;
+}) => (
+  <div className={`full-screen ${isShown ? 'modal-shown' : 'modal-hidden'}`}>
+    <div className="modal-backdrop" onClick={toggleShown} />
+    <div
+      className="modal-container"
+      onClick={e => {
+        if (e.target === e.currentTarget) {
+          toggleShown();
+        }
+      }}
+    >
+      <div className="modal">
+        <h2 className="text-bold">Are you sure about that?</h2>
+        <div className="mb-3">All progress in this lesson will be lost.</div>
+        <div className="w-100 d-flex justify-end">
+          <div className="mr-2 btn" onClick={toggleShown}>
+            CANCEL
+          </div>
+          <div className="mr-2 btn">QUIT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 type MultipleChoiceState = {
   selectedIndex: null | number;
   hasAnswered: boolean;
@@ -358,6 +389,7 @@ type MultipleChoiceState = {
   correctIndex: number;
   correctAnswers: number;
   correctAnswersNeeded: number;
+  isModalShown: boolean;
 };
 class MultipleChoice extends React.Component {
   state: MultipleChoiceState = {
@@ -366,7 +398,8 @@ class MultipleChoice extends React.Component {
     answers: ['ni2hao3', 'hao3', 'ni3'],
     correctIndex: 0,
     correctAnswers: 0,
-    correctAnswersNeeded: 5
+    correctAnswersNeeded: 5,
+    isModalShown: false
   };
 
   render() {
@@ -376,13 +409,19 @@ class MultipleChoice extends React.Component {
       answers,
       correctIndex,
       correctAnswers,
-      correctAnswersNeeded
+      correctAnswersNeeded,
+      isModalShown
     } = this.state;
     return (
       <div className="full-screen bg-gray">
         <div className="main-container">
           <div className="d-flex align-center space-around">
-            <div className="gray-progress-x btn">✕</div>
+            <div
+              className="gray-progress-x btn"
+              onClick={() => this.setState({ isModalShown: true })}
+            >
+              ✕
+            </div>
             <div className="gray-progress-bar">
               <div
                 className="bg-green green-progress-bar"
@@ -458,6 +497,10 @@ class MultipleChoice extends React.Component {
             )}
           </div>
         </div>
+        <Modal
+          isShown={isModalShown}
+          toggleShown={() => this.setState({ isModalShown: !isModalShown })}
+        />
       </div>
     );
   }
