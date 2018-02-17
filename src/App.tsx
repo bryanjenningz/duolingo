@@ -353,18 +353,18 @@ const ChoosePath = () => (
 
 const Modal = ({
   isShown,
-  toggleShown
+  hideModal
 }: {
   isShown: boolean;
-  toggleShown: () => void;
+  hideModal: () => void;
 }) => (
   <div className={`full-screen ${isShown ? 'modal-shown' : 'modal-hidden'}`}>
-    <div className="modal-backdrop" onClick={toggleShown} />
+    <div className="modal-backdrop" onClick={hideModal} />
     <div
       className="modal-container"
       onClick={e => {
         if (e.target === e.currentTarget) {
-          toggleShown();
+          hideModal();
         }
       }}
     >
@@ -372,7 +372,7 @@ const Modal = ({
         <h2 className="text-bold">Are you sure about that?</h2>
         <div className="mb-3">All progress in this lesson will be lost.</div>
         <div className="w-100 d-flex justify-end">
-          <div className="mr-2 btn" onClick={toggleShown}>
+          <div className="mr-2 btn" onClick={hideModal}>
             CANCEL
           </div>
           <div className="mr-2 btn">QUIT</div>
@@ -499,7 +499,7 @@ class MultipleChoice extends React.Component {
         </div>
         <Modal
           isShown={isModalShown}
-          toggleShown={() => this.setState({ isModalShown: !isModalShown })}
+          hideModal={() => this.setState({ isModalShown: false })}
         />
       </div>
     );
