@@ -449,4 +449,5 @@
 }
 .answer-card.selected {
   border: 2px solid #6db2ff;
+  background: rgba(109, 178, 255, 0.45);
 }
