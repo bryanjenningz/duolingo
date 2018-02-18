@@ -383,8 +383,9 @@ const Modal = ({
     </div>
   </div>
 );
-
+type QuestionType = 'CHARACTER_TO_PRONUNCIATION' | 'PRONUNCIATION_TO_CHARACTER';
 type MultipleChoiceProps = {
+  questionType: QuestionType;
   question: string;
   answers: string[];
   correctIndex: number;
@@ -410,6 +411,7 @@ class MultipleChoice extends React.Component {
   render() {
     const { selectedIndex, hasAnswered, isModalShown } = this.state;
     const {
+      questionType,
       question,
       answers,
       correctIndex,
@@ -438,33 +440,65 @@ class MultipleChoice extends React.Component {
               />
             </div>
           </div>
-          <h2 className="text-center">What sound does this make?</h2>
-          <div className="rounded-card">
-            <img src={volumeUp} className="rounded-card-play-icon" />
-            <div className="rounded-card-text">{question}</div>
-          </div>
-          <div>
-            {answers.map((text, i) => (
-              <div
-                key={i}
-                className={
-                  'btn-block multiple-choice-btn ' +
-                  (selectedIndex === i ? 'selected' : '')
-                }
-                onClick={() => {
-                  if (!hasAnswered) {
-                    this.setState({ selectedIndex: i });
-                  }
-                }}
-              >
-                <div className="multiple-choice-btn-circle">
-                  <div className="circle" />
-                </div>
-                <div>{text}</div>
-                <div />
+          <h2 className="text-center">
+            {questionType === 'CHARACTER_TO_PRONUNCIATION'
+              ? 'What sound does this make?'
+              : questionType === 'PRONUNCIATION_TO_CHARACTER'
+                ? `Select the correct character(s) for "${question}"`
+                : ''}
+          </h2>
+          {questionType === 'CHARACTER_TO_PRONUNCIATION' ? (
+            <div>
+              <div className="rounded-card">
+                <img src={volumeUp} className="rounded-card-play-icon" />
+                <div className="rounded-card-text">{question}</div>
               </div>
-            ))}
-          </div>
+              <div>
+                {answers.map((text, i) => (
+                  <div
+                    key={i}
+                    className={
+                      'btn-block multiple-choice-btn ' +
+                      (selectedIndex === i ? 'selected' : '')
+                    }
+                    onClick={() => {
+                      if (!hasAnswered) {
+                        this.setState({ selectedIndex: i });
+                      }
+                    }}
+                  >
+                    <div className="multiple-choice-btn-circle">
+                      <div className="circle" />
+                    </div>
+                    <div>{text}</div>
+                    <div />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : questionType === 'PRONUNCIATION_TO_CHARACTER' ? (
+            <div className="answer-card-container">
+              {answers.map((text, i) => (
+                <div
+                  key={i}
+                  className="answer-card-inner-container"
+                  onClick={() => {
+                    if (!hasAnswered) {
+                      this.setState({ selectedIndex: i });
+                    }
+                  }}
+                >
+                  <div
+                    className={`answer-card ${
+                      selectedIndex === i ? 'selected' : ''
+                    }`}
+                  >
+                    {text}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null}
           <div
             className={`btn btn-block ${
               selectedIndex === null
@@ -482,12 +516,7 @@ class MultipleChoice extends React.Component {
                   }
                 } else {
                   this.setState(
-                    {
-                      hasAnswered: true,
-                      correctAnswers:
-                        correctAnswers +
-                        (selectedIndex === correctIndex ? 1 : 0)
-                    },
+                    { hasAnswered: true },
                     selectedIndex === correctIndex
                       ? answerCorrectly
                       : answerIncorrectly
@@ -522,130 +551,19 @@ class MultipleChoice extends React.Component {
   }
 }
 
-class PronunciationToCharacter extends React.Component {
-  props: MultipleChoiceProps;
-  state: MultipleChoiceState = {
-    selectedIndex: null,
-    hasAnswered: false,
-    isModalShown: false
-  };
-  render() {
-    const { selectedIndex, hasAnswered, isModalShown } = this.state;
-    const {
-      correctAnswers,
-      correctAnswersNeeded,
-      question,
-      answers,
-      continueToNext,
-      correctIndex,
-      answerCorrectly,
-      answerIncorrectly
-    } = this.props;
-    return (
-      <div className="full-screen bg-gray">
-        <div className="main-container">
-          <div className="d-flex align-center space-around">
-            <div
-              className="gray-progress-x btn"
-              onClick={() => this.setState({ isModalShown: true })}
-            >
-              ✕
-            </div>
-            <div className="gray-progress-bar">
-              <div
-                className="bg-green green-progress-bar"
-                style={{
-                  width: `${correctAnswers / correctAnswersNeeded * 100}%`
-                }}
-              />
-            </div>
-          </div>
-          <h2 className="text-center">What sound does this make?</h2>
-          <div className="rounded-card">
-            <img src={volumeUp} className="rounded-card-play-icon" />
-            <div className="rounded-card-text">{question}</div>
-          </div>
-          <div>
-            {answers.map((text, i) => (
-              <div
-                key={i}
-                className={
-                  'btn-block multiple-choice-btn ' +
-                  (selectedIndex === i ? 'selected' : '')
-                }
-                onClick={() => {
-                  if (!hasAnswered) {
-                    this.setState({ selectedIndex: i });
-                  }
-                }}
-              >
-                <div className="multiple-choice-btn-circle">
-                  <div className="circle" />
-                </div>
-                <div>{text}</div>
-                <div />
-              </div>
-            ))}
-          </div>
-          <div
-            className={`btn btn-block ${
-              selectedIndex === null
-                ? 'bg-dark-gray text-darker-gray'
-                : 'bg-green text-white'
-            }`}
-            onClick={() => {
-              if (typeof selectedIndex === 'number') {
-                if (hasAnswered) {
-                  if (correctAnswers < correctAnswersNeeded) {
-                    this.setState(
-                      { selectedIndex: null, hasAnswered: false },
-                      continueToNext
-                    );
-                  }
-                } else {
-                  this.setState(
-                    {
-                      hasAnswered: true,
-                      correctAnswers:
-                        correctAnswers +
-                        (selectedIndex === correctIndex ? 1 : 0)
-                    },
-                    selectedIndex === correctIndex
-                      ? answerCorrectly
-                      : answerIncorrectly
-                  );
-                }
-              }
-            }}
-          >
-            {hasAnswered ? 'CONTINUE' : 'CHECK'}
-          </div>
-          <div
-            className={`solution-banner ${
-              selectedIndex === correctIndex ? 'correct' : 'incorrect'
-            } ${hasAnswered ? 'shown' : 'hidden'}`}
-          >
-            <div>
-              {selectedIndex === correctIndex
-                ? 'You are correct'
-                : `Oops, that's not correct.`}
-            </div>
-            {selectedIndex === correctIndex ? null : (
-              <div className="correct-solution">{answers[correctIndex]}</div>
-            )}
-          </div>
-        </div>
-        <Modal
-          isShown={isModalShown}
-          hideModal={() => this.setState({ isModalShown: false })}
-        />
-      </div>
-    );
-  }
-}
-
+type QuestionState = {
+  questions: {
+    type: QuestionType;
+    question: string;
+    answers: string[];
+    correctIndex: number;
+  }[];
+  questionIndex: number;
+  correctAnswers: number;
+  incorrectQuestionIndexes: number[];
+};
 class Question extends React.Component {
-  state = {
+  state: QuestionState = {
     questions: [
       {
         type: 'PRONUNCIATION_TO_CHARACTER',
@@ -654,26 +572,31 @@ class Question extends React.Component {
         correctIndex: 0
       },
       {
-        type: 'MULTIPLE_CHOICE',
+        type: 'CHARACTER_TO_PRONUNCIATION',
         question: '你好',
         answers: ['ni2hao3', 'hao3', 'ni3'],
         correctIndex: 0
       },
       {
-        type: 'MULTIPLE_CHOICE',
+        type: 'CHARACTER_TO_PRONUNCIATION',
         question: '好',
         answers: ['hao3', 'zai4', 'ni3'],
         correctIndex: 0
       }
     ],
     questionIndex: 0,
-    correctAnswers: 0
+    correctAnswers: 0,
+    incorrectQuestionIndexes: []
   };
   answerCorrectly() {
     this.setState({ correctAnswers: this.state.correctAnswers + 1 });
   }
   answerIncorrectly() {
-    this.setState({ questionIndex: this.state.questionIndex + 1 });
+    this.setState({
+      incorrectQuestionIndexes: this.state.incorrectQuestionIndexes.concat(
+        this.state.questionIndex
+      )
+    });
   }
   continueToNext() {
     this.setState({ questionIndex: this.state.questionIndex + 1 });
@@ -683,36 +606,19 @@ class Question extends React.Component {
     const { type: questionType, question, answers, correctIndex } = questions[
       questionIndex
     ];
-    switch (questionType) {
-      case 'MULTIPLE_CHOICE':
-        return (
-          <MultipleChoice
-            question={question}
-            answers={answers}
-            correctIndex={correctIndex}
-            correctAnswers={correctAnswers}
-            correctAnswersNeeded={questions.length}
-            answerCorrectly={() => this.answerCorrectly()}
-            answerIncorrectly={() => this.answerIncorrectly()}
-            continueToNext={() => this.continueToNext()}
-          />
-        );
-      case 'PRONUNCIATION_TO_CHARACTER':
-        return (
-          <PronunciationToCharacter
-            question={question}
-            answers={answers}
-            correctIndex={correctIndex}
-            correctAnswers={correctAnswers}
-            correctAnswersNeeded={questions.length}
-            answerCorrectly={() => this.answerCorrectly()}
-            answerIncorrectly={() => this.answerIncorrectly()}
-            continueToNext={() => this.continueToNext()}
-          />
-        );
-      default:
-        throw new Error(`Invalid question type: ${questionType}`);
-    }
+    return (
+      <MultipleChoice
+        questionType={questionType}
+        question={question}
+        answers={answers}
+        correctIndex={correctIndex}
+        correctAnswers={correctAnswers}
+        correctAnswersNeeded={questions.length}
+        answerCorrectly={() => this.answerCorrectly()}
+        answerIncorrectly={() => this.answerIncorrectly()}
+        continueToNext={() => this.continueToNext()}
+      />
+    );
   }
 }
 
