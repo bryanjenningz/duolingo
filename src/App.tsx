@@ -384,39 +384,41 @@ const Modal = ({
   </div>
 );
 
-type MultipleChoiceState = {
-  selectedIndex: null | number;
-  hasAnswered: boolean;
+type MultipleChoiceProps = {
   question: string;
   answers: string[];
   correctIndex: number;
   correctAnswers: number;
   correctAnswersNeeded: number;
+  answerCorrectly: () => void;
+  answerIncorrectly: () => void;
+  continueToNext: () => void;
+};
+type MultipleChoiceState = {
+  selectedIndex: null | number;
+  hasAnswered: boolean;
   isModalShown: boolean;
 };
 class MultipleChoice extends React.Component {
+  props: MultipleChoiceProps;
   state: MultipleChoiceState = {
     selectedIndex: null,
     hasAnswered: false,
-    question: '你好',
-    answers: ['ni2hao3', 'hao3', 'ni3'],
-    correctIndex: 0,
-    correctAnswers: 0,
-    correctAnswersNeeded: 5,
     isModalShown: false
   };
 
   render() {
+    const { selectedIndex, hasAnswered, isModalShown } = this.state;
     const {
-      selectedIndex,
-      hasAnswered,
       question,
       answers,
       correctIndex,
       correctAnswers,
       correctAnswersNeeded,
-      isModalShown
-    } = this.state;
+      answerCorrectly,
+      answerIncorrectly,
+      continueToNext
+    } = this.props;
     return (
       <div className="full-screen bg-gray">
         <div className="main-container">
@@ -473,14 +475,23 @@ class MultipleChoice extends React.Component {
               if (typeof selectedIndex === 'number') {
                 if (hasAnswered) {
                   if (correctAnswers < correctAnswersNeeded) {
-                    this.setState({ selectedIndex: null, hasAnswered: false });
+                    this.setState(
+                      { selectedIndex: null, hasAnswered: false },
+                      continueToNext
+                    );
                   }
                 } else {
-                  this.setState({
-                    hasAnswered: true,
-                    correctAnswers:
-                      correctAnswers + (selectedIndex === correctIndex ? 1 : 0)
-                  });
+                  this.setState(
+                    {
+                      hasAnswered: true,
+                      correctAnswers:
+                        correctAnswers +
+                        (selectedIndex === correctIndex ? 1 : 0)
+                    },
+                    selectedIndex === correctIndex
+                      ? answerCorrectly
+                      : answerIncorrectly
+                  );
                 }
               }
             }}
@@ -511,6 +522,47 @@ class MultipleChoice extends React.Component {
   }
 }
 
+class Question extends React.Component {
+  state = {
+    questions: [
+      {
+        question: '你好',
+        answers: ['ni2hao3', 'hao3', 'ni3'],
+        correctIndex: 0
+      },
+      {
+        question: '好',
+        answers: ['hao3', 'zai4', 'ni3'],
+        correctIndex: 0
+      }
+    ],
+    questionIndex: 0,
+    correctAnswers: 0
+  };
+  render() {
+    const { questions, questionIndex, correctAnswers } = this.state;
+    const { question, answers, correctIndex } = questions[questionIndex];
+    return (
+      <MultipleChoice
+        question={question}
+        answers={answers}
+        correctIndex={correctIndex}
+        correctAnswers={correctAnswers}
+        correctAnswersNeeded={questions.length}
+        answerCorrectly={() =>
+          this.setState({ correctAnswers: correctAnswers + 1 })
+        }
+        answerIncorrectly={() =>
+          this.setState({ questionIndex: questionIndex + 1 })
+        }
+        continueToNext={() =>
+          this.setState({ questionIndex: questionIndex + 1 })
+        }
+      />
+    );
+  }
+}
+
 const App = () => (
   <div>
     <Route exact={true} path="/" component={Home} />
@@ -518,7 +570,7 @@ const App = () => (
     <Route exact={true} path="/choose-language" component={ChooseLanguage} />
     <Route exact={true} path="/choose-goal" component={ChooseGoal} />
     <Route exact={true} path="/choose-path" component={ChoosePath} />
-    <Route exact={true} path="/question" component={MultipleChoice} />
+    <Route exact={true} path="/question" component={Question} />
   </div>
 );
 
