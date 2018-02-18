@@ -559,8 +559,7 @@ type QuestionState = {
     correctIndex: number;
   }[];
   questionIndex: number;
-  correctAnswers: number;
-  incorrectQuestionIndexes: number[];
+  questionScores: number[];
 };
 class Question extends React.Component {
   state: QuestionState = {
@@ -585,24 +584,38 @@ class Question extends React.Component {
       }
     ],
     questionIndex: 0,
-    correctAnswers: 0,
-    incorrectQuestionIndexes: []
+    questionScores: Array(3).fill(0)
   };
   answerCorrectly() {
-    this.setState({ correctAnswers: this.state.correctAnswers + 1 });
+    this.setState({
+      questionScores: [
+        ...this.state.questionScores.slice(0, this.state.questionIndex),
+        this.state.questionScores[this.state.questionIndex] + 1,
+        ...this.state.questionScores.slice(this.state.questionIndex + 1)
+      ]
+    });
   }
   answerIncorrectly() {
     this.setState({
-      incorrectQuestionIndexes: this.state.incorrectQuestionIndexes.concat(
-        this.state.questionIndex
-      )
+      questionScores: [
+        ...this.state.questionScores.slice(0, this.state.questionIndex),
+        this.state.questionScores[this.state.questionIndex] - 1,
+        ...this.state.questionScores.slice(this.state.questionIndex + 1)
+      ]
     });
   }
   continueToNext() {
-    this.setState({ questionIndex: this.state.questionIndex + 1 });
+    const { questionIndex, questions, questionScores } = this.state;
+    const incrementedQuestionIndex = (questionIndex + 1) % questions.length;
+    const nextQuestionIndex =
+      questions
+        .concat(questions)
+        .findIndex((_, i) => questionScores[i] <= 0, incrementedQuestionIndex) %
+      questions.length;
+    this.setState({ questionIndex: nextQuestionIndex });
   }
   render() {
-    const { questions, questionIndex, correctAnswers } = this.state;
+    const { questions, questionIndex, questionScores } = this.state;
     const { type: questionType, question, answers, correctIndex } = questions[
       questionIndex
     ];
@@ -612,8 +625,11 @@ class Question extends React.Component {
         question={question}
         answers={answers}
         correctIndex={correctIndex}
-        correctAnswers={correctAnswers}
-        correctAnswersNeeded={questions.length}
+        correctAnswers={questionScores.filter(score => score > 0).length}
+        correctAnswersNeeded={questionScores.reduce(
+          (total, score) => total - Math.min(0, score),
+          questions.length
+        )}
         answerCorrectly={() => this.answerCorrectly()}
         answerIncorrectly={() => this.answerIncorrectly()}
         continueToNext={() => this.continueToNext()}
