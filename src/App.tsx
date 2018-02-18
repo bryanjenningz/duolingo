@@ -387,6 +387,7 @@ const Modal = ({
 type MultipleChoiceState = {
   selectedIndex: null | number;
   hasAnswered: boolean;
+  question: string;
   answers: string[];
   correctIndex: number;
   correctAnswers: number;
@@ -397,6 +398,7 @@ class MultipleChoice extends React.Component {
   state: MultipleChoiceState = {
     selectedIndex: null,
     hasAnswered: false,
+    question: '你好',
     answers: ['ni2hao3', 'hao3', 'ni3'],
     correctIndex: 0,
     correctAnswers: 0,
@@ -408,6 +410,7 @@ class MultipleChoice extends React.Component {
     const {
       selectedIndex,
       hasAnswered,
+      question,
       answers,
       correctIndex,
       correctAnswers,
@@ -436,7 +439,7 @@ class MultipleChoice extends React.Component {
           <h2 className="text-center">What sound does this make?</h2>
           <div className="rounded-card">
             <img src={volumeUp} className="rounded-card-play-icon" />
-            <div className="rounded-card-text">你好</div>
+            <div className="rounded-card-text">{question}</div>
           </div>
           <div>
             {answers.map((text, i) => (
