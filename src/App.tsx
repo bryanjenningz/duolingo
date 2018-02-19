@@ -573,6 +573,7 @@ class TapPairs extends React.Component {
   render() {
     const {
       pairs,
+      correctPairs,
       correctAnswers,
       correctAnswersNeeded,
       continueToNext
@@ -602,9 +603,35 @@ class TapPairs extends React.Component {
             {pairs.map((block, i) => (
               <div
                 key={i}
-                className={`block ${selectedIndex === i ? 'selected' : ''}`}
+                className={`block ${selectedIndex === i ? 'selected' : ''} ${
+                  unmatchedPairs.indexOf(i) >= 0 ? '' : 'faded'
+                }`}
                 onClick={() => {
-                  this.setState({ selectedIndex: i });
+                  if (typeof selectedIndex === 'number') {
+                    if (i === selectedIndex) {
+                      this.setState({ selectedIndex: null });
+                    } else {
+                      const first = pairs[selectedIndex];
+                      const second = pairs[i];
+                      const isCorrectPair = correctPairs.some(
+                        ([a, b]) =>
+                          (a === first && b === second) ||
+                          (b === first && a === second)
+                      );
+                      if (isCorrectPair) {
+                        this.setState({
+                          selectedIndex: null,
+                          unmatchedPairs: unmatchedPairs.filter(
+                            index => index !== i && index !== selectedIndex
+                          )
+                        });
+                      } else {
+                        this.setState({ selectedIndex: null });
+                      }
+                    }
+                  } else {
+                    this.setState({ selectedIndex: i });
+                  }
                 }}
               >
                 {block}

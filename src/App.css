@@ -468,3 +468,6 @@
   background: #6db2ff;
   color: white;
 }
+.block.faded {
+  color: #eee;
+}
