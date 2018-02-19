@@ -557,6 +557,7 @@ class TapPairs extends React.Component {
     correctPairs: [string, string][];
     correctAnswers: number;
     correctAnswersNeeded: number;
+    answerCorrectly: () => void;
     continueToNext: () => void;
   };
 
@@ -576,6 +577,7 @@ class TapPairs extends React.Component {
       correctPairs,
       correctAnswers,
       correctAnswersNeeded,
+      answerCorrectly,
       continueToNext
     } = this.props;
     const { isModalShown, selectedIndex, unmatchedPairs } = this.state;
@@ -619,12 +621,19 @@ class TapPairs extends React.Component {
                           (b === first && a === second)
                       );
                       if (isCorrectPair) {
-                        this.setState({
-                          selectedIndex: null,
-                          unmatchedPairs: unmatchedPairs.filter(
-                            index => index !== i && index !== selectedIndex
-                          )
-                        });
+                        this.setState(
+                          {
+                            selectedIndex: null,
+                            unmatchedPairs: unmatchedPairs.filter(
+                              index => index !== i && index !== selectedIndex
+                            )
+                          },
+                          () => {
+                            if (this.state.unmatchedPairs.length === 0) {
+                              answerCorrectly();
+                            }
+                          }
+                        );
                       } else {
                         this.setState({ selectedIndex: null });
                       }
@@ -785,6 +794,7 @@ class Question extends React.Component {
             (total, score) => total - Math.min(0, score),
             questions.length
           )}
+          answerCorrectly={() => this.answerCorrectly()}
           continueToNext={() => this.continueToNext()}
         />
       );
