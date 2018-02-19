@@ -551,6 +551,93 @@ class MultipleChoice extends React.Component {
   }
 }
 
+class TapPairs extends React.Component {
+  props: {
+    pairs: string[];
+    correctPairs: [string, string][];
+    correctAnswers: number;
+    correctAnswersNeeded: number;
+    continueToNext: () => void;
+  };
+
+  state: {
+    isModalShown: boolean;
+    selectedIndex: null | number;
+    unmatchedPairs: number[];
+  } = {
+    isModalShown: false,
+    selectedIndex: null,
+    unmatchedPairs: Array.from({ length: this.props.pairs.length }, (_, i) => i)
+  };
+
+  render() {
+    const {
+      pairs,
+      correctAnswers,
+      correctAnswersNeeded,
+      continueToNext
+    } = this.props;
+    const { isModalShown, selectedIndex, unmatchedPairs } = this.state;
+    return (
+      <div className="full-screen bg-gray">
+        <div className="main-container">
+          <div className="d-flex align-center space-around">
+            <div
+              className="gray-progress-x btn"
+              onClick={() => this.setState({ isModalShown: true })}
+            >
+              ✕
+            </div>
+            <div className="gray-progress-bar">
+              <div
+                className="bg-green green-progress-bar"
+                style={{
+                  width: `${correctAnswers / correctAnswersNeeded * 100}%`
+                }}
+              />
+            </div>
+          </div>
+          <h2 className="text-center">Tap the pairs</h2>
+          <div className="block-container">
+            {pairs.map((block, i) => (
+              <div
+                key={i}
+                className={`block ${selectedIndex === i ? 'selected' : ''}`}
+                onClick={() => {
+                  this.setState({ selectedIndex: i });
+                }}
+              >
+                {block}
+              </div>
+            ))}
+          </div>
+          <div
+            className={`btn btn-block ${
+              unmatchedPairs.length > 0
+                ? 'bg-dark-gray text-darker-gray'
+                : 'bg-green text-white'
+            }`}
+            onClick={() => {
+              if (
+                unmatchedPairs.length === 0 &&
+                correctAnswers < correctAnswersNeeded
+              ) {
+                continueToNext();
+              }
+            }}
+          >
+            {unmatchedPairs.length === 0 ? 'CONTINUE' : 'CHECK'}
+          </div>
+        </div>
+        <Modal
+          isShown={isModalShown}
+          hideModal={() => this.setState({ isModalShown: false })}
+        />
+      </div>
+    );
+  }
+}
+
 type QuestionState = {
   questions: (
     | {
@@ -600,7 +687,7 @@ class Question extends React.Component {
         correctPairs: [['hao3', '好'], ['ni2hao3', '你好']]
       }
     ],
-    questionIndex: 0,
+    questionIndex: 3,
     questionScores: Array(4).fill(0)
   };
   answerCorrectly() {
@@ -655,7 +742,18 @@ class Question extends React.Component {
         />
       );
     } else if (question.type === 'TAP_PAIRS') {
-      return <div>Hey</div>;
+      return (
+        <TapPairs
+          pairs={question.pairs}
+          correctPairs={question.correctPairs}
+          correctAnswers={questionScores.filter(score => score > 0).length}
+          correctAnswersNeeded={questionScores.reduce(
+            (total, score) => total - Math.min(0, score),
+            questions.length
+          )}
+          continueToNext={() => this.continueToNext()}
+        />
+      );
     } else {
       throw new Error(`Invalid question: ${JSON.stringify(question)}`);
     }

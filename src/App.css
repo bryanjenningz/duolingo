@@ -451,3 +451,20 @@
   border: 2px solid #6db2ff;
   background: rgba(109, 178, 255, 0.45);
 }
+
+.block-container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.block {
+  background: white;
+  padding: 10px;
+  border-radius: 3px;
+  margin: 5px;
+}
+.block.selected {
+  background: #6db2ff;
+  color: white;
+}
