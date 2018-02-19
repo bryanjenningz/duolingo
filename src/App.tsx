@@ -610,7 +610,7 @@ class TapPairs extends React.Component {
                   if (typeof selectedIndex === 'number') {
                     if (i === selectedIndex) {
                       this.setState({ selectedIndex: null });
-                    } else {
+                    } else if (unmatchedPairs.indexOf(i) >= 0) {
                       const first = pairs[selectedIndex];
                       const second = pairs[i];
                       const isCorrectPair = correctPairs.some(
@@ -629,7 +629,7 @@ class TapPairs extends React.Component {
                         this.setState({ selectedIndex: null });
                       }
                     }
-                  } else {
+                  } else if (unmatchedPairs.indexOf(i) >= 0) {
                     this.setState({ selectedIndex: i });
                   }
                 }}
