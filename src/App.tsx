@@ -552,12 +552,24 @@ class MultipleChoice extends React.Component {
 }
 
 type QuestionState = {
-  questions: {
-    type: QuestionType;
-    question: string;
-    answers: string[];
-    correctIndex: number;
-  }[];
+  questions: (
+    | {
+        type: 'CHARACTER_TO_PRONUNCIATION';
+        question: string;
+        answers: string[];
+        correctIndex: number;
+      }
+    | {
+        type: 'PRONUNCIATION_TO_CHARACTER';
+        question: string;
+        answers: string[];
+        correctIndex: number;
+      }
+    | {
+        type: 'TAP_PAIRS';
+        pairs: string[];
+        correctPairs: [string, string][];
+      })[];
   questionIndex: number;
   questionScores: number[];
 };
@@ -581,10 +593,15 @@ class Question extends React.Component {
         question: '好',
         answers: ['hao3', 'zai4', 'ni3'],
         correctIndex: 0
+      },
+      {
+        type: 'TAP_PAIRS',
+        pairs: ['hao3', 'ni2hao3', '好', '你好'],
+        correctPairs: [['hao3', '好'], ['ni2hao3', '你好']]
       }
     ],
     questionIndex: 0,
-    questionScores: Array(3).fill(0)
+    questionScores: Array(4).fill(0)
   };
   answerCorrectly() {
     this.setState({
@@ -616,25 +633,32 @@ class Question extends React.Component {
   }
   render() {
     const { questions, questionIndex, questionScores } = this.state;
-    const { type: questionType, question, answers, correctIndex } = questions[
-      questionIndex
-    ];
-    return (
-      <MultipleChoice
-        questionType={questionType}
-        question={question}
-        answers={answers}
-        correctIndex={correctIndex}
-        correctAnswers={questionScores.filter(score => score > 0).length}
-        correctAnswersNeeded={questionScores.reduce(
-          (total, score) => total - Math.min(0, score),
-          questions.length
-        )}
-        answerCorrectly={() => this.answerCorrectly()}
-        answerIncorrectly={() => this.answerIncorrectly()}
-        continueToNext={() => this.continueToNext()}
-      />
-    );
+    const question = questions[questionIndex];
+    if (
+      question.type === 'CHARACTER_TO_PRONUNCIATION' ||
+      question.type === 'PRONUNCIATION_TO_CHARACTER'
+    ) {
+      return (
+        <MultipleChoice
+          questionType={question.type}
+          question={question.question}
+          answers={question.answers}
+          correctIndex={question.correctIndex}
+          correctAnswers={questionScores.filter(score => score > 0).length}
+          correctAnswersNeeded={questionScores.reduce(
+            (total, score) => total - Math.min(0, score),
+            questions.length
+          )}
+          answerCorrectly={() => this.answerCorrectly()}
+          answerIncorrectly={() => this.answerIncorrectly()}
+          continueToNext={() => this.continueToNext()}
+        />
+      );
+    } else if (question.type === 'TAP_PAIRS') {
+      return <div>Hey</div>;
+    } else {
+      throw new Error(`Invalid question: ${JSON.stringify(question)}`);
+    }
   }
 }
 
