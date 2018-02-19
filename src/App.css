@@ -463,6 +463,7 @@
   padding: 10px;
   border-radius: 3px;
   margin: 5px;
+  cursor: pointer;
 }
 .block.selected {
   background: #6db2ff;

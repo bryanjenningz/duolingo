@@ -655,6 +655,13 @@ class TapPairs extends React.Component {
           >
             {unmatchedPairs.length === 0 ? 'CONTINUE' : 'CHECK'}
           </div>
+          <div
+            className={`solution-banner correct ${
+              unmatchedPairs.length === 0 ? 'shown' : 'hidden'
+            }`}
+          >
+            You are correct
+          </div>
         </div>
         <Modal
           isShown={isModalShown}
