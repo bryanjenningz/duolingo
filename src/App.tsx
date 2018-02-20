@@ -697,13 +697,24 @@ class SoundToPronunciation extends React.Component {
   state: {
     isModalShown: boolean;
     selectedIndex: null | number;
+    hasAnswered: boolean;
   } = {
     isModalShown: false,
-    selectedIndex: null
+    selectedIndex: null,
+    hasAnswered: false
   };
 
   render() {
-    const { correctAnswers, correctAnswersNeeded, answers } = this.props;
+    const { selectedIndex, hasAnswered, isModalShown } = this.state;
+    const {
+      correctAnswers,
+      correctAnswersNeeded,
+      answers,
+      continueToNext,
+      correctIndex,
+      answerCorrectly,
+      answerIncorrectly
+    } = this.props;
     return (
       <div className="full-screen bg-gray">
         <div className="main-container">
@@ -730,11 +741,66 @@ class SoundToPronunciation extends React.Component {
           <div className="answer-card-container">
             {answers.map((answer, i) => (
               <div key={i} className="answer-card-inner-container">
-                <div className="answer-card sound-card">{answer}</div>
+                <div
+                  className={`answer-card sound-card ${
+                    selectedIndex === i ? 'selected' : ''
+                  }`}
+                  onClick={() => {
+                    this.setState({ selectedIndex: i });
+                  }}
+                >
+                  {answer}
+                </div>
               </div>
             ))}
           </div>
+          <div
+            className={`btn btn-block ${
+              selectedIndex === null
+                ? 'bg-dark-gray text-darker-gray'
+                : 'bg-green text-white'
+            }`}
+            onClick={() => {
+              if (typeof selectedIndex === 'number') {
+                if (hasAnswered) {
+                  if (correctAnswers < correctAnswersNeeded) {
+                    this.setState(
+                      { selectedIndex: null, hasAnswered: false },
+                      continueToNext
+                    );
+                  }
+                } else {
+                  this.setState(
+                    { hasAnswered: true },
+                    selectedIndex === correctIndex
+                      ? answerCorrectly
+                      : answerIncorrectly
+                  );
+                }
+              }
+            }}
+          >
+            {hasAnswered ? 'CONTINUE' : 'CHECK'}
+          </div>
+          <div
+            className={`solution-banner ${
+              selectedIndex === correctIndex ? 'correct' : 'incorrect'
+            } ${hasAnswered ? 'shown' : 'hidden'}`}
+          >
+            <div>
+              {selectedIndex === correctIndex
+                ? 'You are correct'
+                : `Oops, that's not correct.`}
+            </div>
+            {selectedIndex === correctIndex ? null : (
+              <div className="correct-solution">{answers[correctIndex]}</div>
+            )}
+          </div>
         </div>
+        <Modal
+          isShown={isModalShown}
+          hideModal={() => this.setState({ isModalShown: false })}
+        />
       </div>
     );
   }
