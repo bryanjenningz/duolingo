@@ -842,6 +842,11 @@ type QuestionData =
       sound: string;
       answers: string[];
       correctIndex: number;
+    }
+  | {
+      type: 'TRANSLATE_SENTENCE';
+      sentence: string;
+      correctTranslations: string[];
     };
 
 const defaultQuestions: QuestionData[] = [
@@ -891,6 +896,11 @@ const defaultQuestions: QuestionData[] = [
     answers: ['ni3', 'hao3', 'jian4', 'zai4'],
     correctIndex: 1
   },
+  {
+    type: 'TRANSLATE_SENTENCE',
+    sentence: '好!',
+    correctTranslations: ['good', 'ok', 'okay']
+  }
 ];
 
 class Question extends React.Component {
