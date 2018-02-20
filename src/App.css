@@ -504,3 +504,6 @@
 .translation-textbox::placeholder {
   color: #ccc;
 }
+.translation-textbox:focus {
+  outline: none;
+}
