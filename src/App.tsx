@@ -699,6 +699,12 @@ type QuestionState = {
         type: 'TAP_PAIRS';
         pairs: string[];
         correctPairs: [string, string][];
+      }
+    | {
+        type: 'SOUND_TO_PRONUNCIATION';
+        sound: string;
+        answers: string[];
+        correctIndex: number;
       })[];
   questionIndex: number;
   questionScores: number[];
@@ -706,12 +712,6 @@ type QuestionState = {
 class Question extends React.Component {
   state: QuestionState = {
     questions: [
-      {
-        type: 'PRONUNCIATION_TO_CHARACTER',
-        question: 'ni2hao3',
-        answers: ['你好', '你', '好', '再'],
-        correctIndex: 0
-      },
       {
         type: 'CHARACTER_TO_PRONUNCIATION',
         question: '你好',
@@ -725,8 +725,14 @@ class Question extends React.Component {
         correctIndex: 0
       },
       {
+        type: 'PRONUNCIATION_TO_CHARACTER',
+        question: 'ni2hao3',
+        answers: ['你好', '你', '好', '再'],
+        correctIndex: 0
+      },
+      {
         type: 'TAP_PAIRS',
-        pairs: ['hao3', 'ni2hao3', '好', '你好'],
+        pairs: ['你好', 'hao3', '好', 'ni2hao3'],
         correctPairs: [['hao3', '好'], ['ni2hao3', '你好']]
       }
     ],
