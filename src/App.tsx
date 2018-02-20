@@ -681,6 +681,31 @@ class TapPairs extends React.Component {
   }
 }
 
+class SoundToPronunciation extends React.Component {
+  props: {
+    sound: string;
+    answers: string[];
+    correctIndex: number;
+    correctAnswers: number;
+    correctAnswersNeeded: number;
+    answerCorrectly: () => void;
+    answerIncorrectly: () => void;
+    continueToNext: () => void;
+  };
+
+  state: {
+    isModalShown: boolean;
+    selectedIndex: null | number;
+  } = {
+    isModalShown: false,
+    selectedIndex: null
+  };
+
+  render() {
+    return <div>Sound</div>;
+  }
+}
+
 type QuestionState = {
   questions: QuestionData[];
   questionIndex: number;
@@ -812,6 +837,22 @@ class Question extends React.Component {
             questions.length
           )}
           answerCorrectly={() => this.answerCorrectly()}
+          continueToNext={() => this.continueToNext()}
+        />
+      );
+    } else if (question.type === 'SOUND_TO_PRONUNCIATION') {
+      return (
+        <SoundToPronunciation
+          sound={question.sound}
+          answers={question.answers}
+          correctIndex={question.correctIndex}
+          correctAnswers={questionScores.filter(score => score > 0).length}
+          correctAnswersNeeded={questionScores.reduce(
+            (total, score) => total - Math.min(0, score),
+            questions.length
+          )}
+          answerCorrectly={() => this.answerCorrectly()}
+          answerIncorrectly={() => this.answerIncorrectly()}
           continueToNext={() => this.continueToNext()}
         />
       );
