@@ -702,7 +702,30 @@ class SoundToPronunciation extends React.Component {
   };
 
   render() {
-    return <div>Sound</div>;
+    const { correctAnswers, correctAnswersNeeded } = this.props;
+    return (
+      <div className="full-screen bg-gray">
+        <div className="main-container">
+          <div className="d-flex align-center space-around">
+            <div
+              className="gray-progress-x btn"
+              onClick={() => this.setState({ isModalShown: true })}
+            >
+              ✕
+            </div>
+            <div className="gray-progress-bar">
+              <div
+                className="bg-green green-progress-bar"
+                style={{
+                  width: `${correctAnswers / correctAnswersNeeded * 100}%`
+                }}
+              />
+            </div>
+          </div>
+          <h2 className="text-center">Select what you hear</h2>
+        </div>
+      </div>
+    );
   }
 }
 
