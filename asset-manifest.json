@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.613552ab.css",
-  "main.css.map": "static/css/main.613552ab.css.map",
-  "main.js": "static/js/main.5d1f325c.js",
-  "main.js.map": "static/js/main.5d1f325c.js.map",
+  "main.css": "static/css/main.b8285727.css",
+  "main.css.map": "static/css/main.b8285727.css.map",
+  "main.js": "static/js/main.0faa1066.js",
+  "main.js.map": "static/js/main.0faa1066.js.map",
   "static/media/arrowLeft.svg": "static/media/arrowLeft.7db3f5d2.svg",
   "static/media/arrowLeftBlack.svg": "static/media/arrowLeftBlack.75ac5d60.svg",
   "static/media/arrowUpCircle.svg": "static/media/arrowUpCircle.4fc690ed.svg",
@@ -13,7 +13,10 @@
   "static/media/facebook.svg": "static/media/facebook.6e44d7bf.svg",
   "static/media/gamepad.svg": "static/media/gamepad.89dab58d.svg",
   "static/media/google.svg": "static/media/google.b916321a.svg",
+  "static/media/hao3.m4a": "static/media/hao3.36b6ab27.m4a",
   "static/media/heart.svg": "static/media/heart.a9aefbbb.svg",
+  "static/media/ni2hao3.m4a": "static/media/ni2hao3.56962246.m4a",
   "static/media/trophy.svg": "static/media/trophy.97f541b7.svg",
-  "static/media/volumeUp.svg": "static/media/volumeUp.98bfff3e.svg"
+  "static/media/volumeUp.svg": "static/media/volumeUp.98bfff3e.svg",
+  "static/media/volumeUpWhite.svg": "static/media/volumeUpWhite.2355f44a.svg"
 }
