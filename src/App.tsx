@@ -705,6 +705,10 @@ class SoundToPronunciation extends React.Component {
     hasAnswered: false
   };
 
+  componentDidMount() {
+    new Audio(this.props.sound).play();
+  }
+
   render() {
     const { selectedIndex, hasAnswered, isModalShown } = this.state;
     const {
