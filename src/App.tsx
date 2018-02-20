@@ -13,6 +13,7 @@ const facebook = require('./facebook.svg');
 const arrowUpCircle = require('./arrowUpCircle.svg');
 const dotCircle = require('./dotCircle.svg');
 const volumeUp = require('./volumeUp.svg');
+const volumeUpWhite = require('./volumeUpWhite.svg');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -702,7 +703,7 @@ class SoundToPronunciation extends React.Component {
   };
 
   render() {
-    const { correctAnswers, correctAnswersNeeded } = this.props;
+    const { correctAnswers, correctAnswersNeeded, answers } = this.props;
     return (
       <div className="full-screen bg-gray">
         <div className="main-container">
@@ -723,6 +724,16 @@ class SoundToPronunciation extends React.Component {
             </div>
           </div>
           <h2 className="text-center">Select what you hear</h2>
+          <div className="sound-btn">
+            <img src={volumeUpWhite} />
+          </div>
+          <div className="answer-card-container">
+            {answers.map((answer, i) => (
+              <div key={i} className="answer-card-inner-container">
+                <div className="answer-card sound-card">{answer}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
