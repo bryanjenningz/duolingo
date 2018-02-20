@@ -15,6 +15,7 @@ const dotCircle = require('./dotCircle.svg');
 const volumeUp = require('./volumeUp.svg');
 const volumeUpWhite = require('./volumeUpWhite.svg');
 const ni2hao3 = require('./ni2hao3.m4a');
+const hao3 = require('./hao3.m4a');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -872,7 +873,24 @@ const defaultQuestions: QuestionData[] = [
     sound: ni2hao3,
     answers: ['ni3', 'zai4', 'ni2hao3', 'hao3'],
     correctIndex: 2
-  }
+  },
+  {
+    type: 'PRONUNCIATION_TO_CHARACTER',
+    question: 'hao3',
+    answers: ['再', '你', '好', '见'],
+    correctIndex: 2
+  },
+  {
+    type: 'TAP_PAIRS',
+    pairs: ['ni2hao3', 'hao3', '你好', '好'],
+    correctPairs: [['hao3', '好'], ['ni2hao3', '你好']]
+  },
+  {
+    type: 'SOUND_TO_PRONUNCIATION',
+    sound: hao3,
+    answers: ['ni3', 'hao3', 'jian4', 'zai4'],
+    correctIndex: 1
+  },
 ];
 
 class Question extends React.Component {
