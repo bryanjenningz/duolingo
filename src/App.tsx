@@ -682,62 +682,73 @@ class TapPairs extends React.Component {
 }
 
 type QuestionState = {
-  questions: (
-    | {
-        type: 'CHARACTER_TO_PRONUNCIATION';
-        question: string;
-        answers: string[];
-        correctIndex: number;
-      }
-    | {
-        type: 'PRONUNCIATION_TO_CHARACTER';
-        question: string;
-        answers: string[];
-        correctIndex: number;
-      }
-    | {
-        type: 'TAP_PAIRS';
-        pairs: string[];
-        correctPairs: [string, string][];
-      }
-    | {
-        type: 'SOUND_TO_PRONUNCIATION';
-        sound: string;
-        answers: string[];
-        correctIndex: number;
-      })[];
+  questions: QuestionData[];
   questionIndex: number;
   questionScores: number[];
 };
+
+type QuestionData =
+  | {
+      type: 'CHARACTER_TO_PRONUNCIATION';
+      question: string;
+      answers: string[];
+      correctIndex: number;
+    }
+  | {
+      type: 'PRONUNCIATION_TO_CHARACTER';
+      question: string;
+      answers: string[];
+      correctIndex: number;
+    }
+  | {
+      type: 'TAP_PAIRS';
+      pairs: string[];
+      correctPairs: [string, string][];
+    }
+  | {
+      type: 'SOUND_TO_PRONUNCIATION';
+      sound: string;
+      answers: string[];
+      correctIndex: number;
+    };
+
+const defaultQuestions: QuestionData[] = [
+  {
+    type: 'CHARACTER_TO_PRONUNCIATION',
+    question: '你好',
+    answers: ['ni2hao3', 'hao3', 'ni3'],
+    correctIndex: 0
+  },
+  {
+    type: 'CHARACTER_TO_PRONUNCIATION',
+    question: '好',
+    answers: ['hao3', 'zai4', 'ni3'],
+    correctIndex: 0
+  },
+  {
+    type: 'PRONUNCIATION_TO_CHARACTER',
+    question: 'ni2hao3',
+    answers: ['你好', '你', '好', '再'],
+    correctIndex: 0
+  },
+  {
+    type: 'TAP_PAIRS',
+    pairs: ['你好', 'hao3', '好', 'ni2hao3'],
+    correctPairs: [['hao3', '好'], ['ni2hao3', '你好']]
+  },
+  {
+    type: 'SOUND_TO_PRONUNCIATION',
+    sound: 'ni2hao3.mp3',
+    answers: ['ni3', 'zai4', 'ni2hao3', 'hao3'],
+    correctIndex: 3
+  }
+];
+
 class Question extends React.Component {
   state: QuestionState = {
-    questions: [
-      {
-        type: 'CHARACTER_TO_PRONUNCIATION',
-        question: '你好',
-        answers: ['ni2hao3', 'hao3', 'ni3'],
-        correctIndex: 0
-      },
-      {
-        type: 'CHARACTER_TO_PRONUNCIATION',
-        question: '好',
-        answers: ['hao3', 'zai4', 'ni3'],
-        correctIndex: 0
-      },
-      {
-        type: 'PRONUNCIATION_TO_CHARACTER',
-        question: 'ni2hao3',
-        answers: ['你好', '你', '好', '再'],
-        correctIndex: 0
-      },
-      {
-        type: 'TAP_PAIRS',
-        pairs: ['你好', 'hao3', '好', 'ni2hao3'],
-        correctPairs: [['hao3', '好'], ['ni2hao3', '你好']]
-      }
-    ],
-    questionIndex: 3,
-    questionScores: Array(4).fill(0)
+    questions: defaultQuestions,
+    questionIndex: defaultQuestions.length - 1,
+    questionScores: Array(defaultQuestions.length).fill(0)
   };
   answerCorrectly() {
     this.setState({
