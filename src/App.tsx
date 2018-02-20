@@ -14,6 +14,7 @@ const arrowUpCircle = require('./arrowUpCircle.svg');
 const dotCircle = require('./dotCircle.svg');
 const volumeUp = require('./volumeUp.svg');
 const volumeUpWhite = require('./volumeUpWhite.svg');
+const ni2hao3 = require('./ni2hao3.m4a');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -707,6 +708,7 @@ class SoundToPronunciation extends React.Component {
   render() {
     const { selectedIndex, hasAnswered, isModalShown } = this.state;
     const {
+      sound,
       correctAnswers,
       correctAnswersNeeded,
       answers,
@@ -735,7 +737,7 @@ class SoundToPronunciation extends React.Component {
             </div>
           </div>
           <h2 className="text-center">Select what you hear</h2>
-          <div className="sound-btn">
+          <div className="sound-btn" onClick={() => new Audio(sound).play()}>
             <img src={volumeUpWhite} />
           </div>
           <div className="answer-card-container">
@@ -863,9 +865,9 @@ const defaultQuestions: QuestionData[] = [
   },
   {
     type: 'SOUND_TO_PRONUNCIATION',
-    sound: 'ni2hao3.mp3',
+    sound: ni2hao3,
     answers: ['ni3', 'zai4', 'ni2hao3', 'hao3'],
-    correctIndex: 3
+    correctIndex: 2
   }
 ];
 
