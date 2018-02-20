@@ -813,6 +813,119 @@ class SoundToPronunciation extends React.Component {
   }
 }
 
+class TranslateSentence extends React.Component {
+  props: {
+    sentence: string;
+    correctTranslations: string[];
+    correctAnswers: number;
+    correctAnswersNeeded: number;
+    answerCorrectly: () => void;
+    answerIncorrectly: () => void;
+    continueToNext: () => void;
+  };
+
+  state: {
+    isModalShown: boolean;
+    hasAnswered: boolean;
+    translation: string;
+  } = {
+    isModalShown: false,
+    hasAnswered: false,
+    translation: ''
+  };
+
+  render() {
+    const { hasAnswered, isModalShown, translation } = this.state;
+    const {
+      sentence,
+      correctTranslations,
+      correctAnswers,
+      correctAnswersNeeded,
+      continueToNext,
+      answerCorrectly,
+      answerIncorrectly
+    } = this.props;
+    return (
+      <div className="full-screen bg-gray">
+        <div className="main-container">
+          <div className="d-flex align-center space-around">
+            <div
+              className="gray-progress-x btn"
+              onClick={() => this.setState({ isModalShown: true })}
+            >
+              ✕
+            </div>
+            <div className="gray-progress-bar">
+              <div
+                className="bg-green green-progress-bar"
+                style={{
+                  width: `${correctAnswers / correctAnswersNeeded * 100}%`
+                }}
+              />
+            </div>
+          </div>
+          <h2 className="text-center">Translate this sentence</h2>
+          <div className="text-center">{sentence}</div>
+          <textarea
+            className="translation-textbox"
+            placeholder="Type the translation"
+            value={translation}
+            onChange={e => this.setState({ translation: e.target.value })}
+          />
+          <div
+            className={`btn btn-block ${
+              translation.length === 0
+                ? 'bg-dark-gray text-darker-gray'
+                : 'bg-green text-white'
+            }`}
+            onClick={() => {
+              if (translation.length > 0) {
+                if (hasAnswered) {
+                  if (correctAnswers < correctAnswersNeeded) {
+                    this.setState(
+                      { selectedIndex: null, hasAnswered: false },
+                      continueToNext
+                    );
+                  }
+                } else {
+                  this.setState(
+                    { hasAnswered: true },
+                    correctTranslations.indexOf(translation) >= 0
+                      ? answerCorrectly
+                      : answerIncorrectly
+                  );
+                }
+              }
+            }}
+          >
+            {hasAnswered ? 'CONTINUE' : 'CHECK'}
+          </div>
+          <div
+            className={`solution-banner ${
+              correctTranslations.indexOf(translation) >= 0
+                ? 'correct'
+                : 'incorrect'
+            } ${hasAnswered ? 'shown' : 'hidden'}`}
+          >
+            <div>
+              {correctTranslations.indexOf(translation) >= 0
+                ? 'You are correct'
+                : `Oops, that's not correct.`}
+            </div>
+            {correctTranslations.indexOf(translation) >= 0 ? null : (
+              <div className="correct-solution">{correctTranslations[0]}</div>
+            )}
+          </div>
+        </div>
+        <Modal
+          isShown={isModalShown}
+          hideModal={() => this.setState({ isModalShown: false })}
+        />
+      </div>
+    );
+  }
+}
+
 type QuestionState = {
   questions: QuestionData[];
   questionIndex: number;
@@ -980,6 +1093,21 @@ class Question extends React.Component {
           sound={question.sound}
           answers={question.answers}
           correctIndex={question.correctIndex}
+          correctAnswers={questionScores.filter(score => score > 0).length}
+          correctAnswersNeeded={questionScores.reduce(
+            (total, score) => total - Math.min(0, score),
+            questions.length
+          )}
+          answerCorrectly={() => this.answerCorrectly()}
+          answerIncorrectly={() => this.answerIncorrectly()}
+          continueToNext={() => this.continueToNext()}
+        />
+      );
+    } else if (question.type === 'TRANSLATE_SENTENCE') {
+      return (
+        <TranslateSentence
+          sentence={question.sentence}
+          correctTranslations={question.correctTranslations}
           correctAnswers={questionScores.filter(score => score > 0).length}
           correctAnswersNeeded={questionScores.reduce(
             (total, score) => total - Math.min(0, score),
