@@ -542,9 +542,8 @@
   background: #eee;
 }
 
-.top-bar {
+.top-bar, .bottom-bar {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
   height: 50px;
@@ -553,4 +552,11 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 1px;
+}
+.top-bar {
+  top: 0;
+}
+.bottom-bar {
+  bottom: 0;
+  height: 60px;
 }

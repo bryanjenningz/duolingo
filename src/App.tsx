@@ -983,6 +983,12 @@ const Lessons = () => (
     <Link to="/lessons/1" className="text-normal text-black mt-5 d-block">
       <div>Greeting 1</div>
     </Link>
+    <div className="bottom-bar">
+      <div>Learn</div>
+      <div>Profile</div>
+      <div>Clubs</div>
+      <div>Shop</div>
+    </div>
   </div>
 );
 
