@@ -972,7 +972,7 @@ const LessonComplete = ({ streak = 1 }: { streak: number }) => (
 
 const Lessons = () => (
   <div>
-    <div className="top-bar">
+    <div className="shadow-top-bar">
       <div>Menu</div>
       <div>Chinese</div>
       <div>
@@ -989,7 +989,7 @@ const Lessons = () => (
         <div className="text-center">Greeting 1</div>
       </Link>
     </div>
-    <div className="bottom-bar">
+    <div className="shadow-bottom-bar">
       <div>Learn</div>
       <div>Profile</div>
       <div>Clubs</div>
@@ -1000,9 +1000,10 @@ const Lessons = () => (
 
 const LessonUnit = () => (
   <div>
-    <div>
+    <div className="top-bar">
       <div>Back</div>
       <div>Greeting 1</div>
+      <div />
     </div>
     <div>
       <div>

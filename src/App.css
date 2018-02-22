@@ -545,7 +545,7 @@
   background: #eee;
 }
 
-.top-bar, .bottom-bar {
+.shadow-top-bar, .shadow-bottom-bar {
   position: fixed;
   left: 0;
   right: 0;
@@ -556,10 +556,10 @@
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 1px;
 }
-.top-bar {
+.shadow-top-bar {
   top: 0;
 }
-.bottom-bar {
+.shadow-bottom-bar {
   bottom: 0;
   height: 60px;
 }
