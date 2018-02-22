@@ -935,7 +935,7 @@ class TranslateSentence extends React.Component {
   }
 }
 
-const LessonComplete = () => (
+const LessonComplete = ({ streak = 1 }: { streak: number }) => (
   <div className="full-screen bg-gray">
     <div className="main-container text-center">
       <h2>Lesson Complete! +10 XP</h2>
@@ -947,10 +947,14 @@ const LessonComplete = () => (
           </div>
         </div>
       </div>
-      <div className="text-orange">1 day streak</div>
+      <div className="text-orange">{streak} day streak</div>
       <div className="d-flex my-3 space-around">
         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
-          <div key={i} className="progress-circle">
+          <div
+            key={i}
+            className="progress-circle"
+            style={{ background: i + streak >= 7 ? '' : '#ccc' }}
+          >
             <div className="progress-circle-inner">{day}</div>
           </div>
         ))}
