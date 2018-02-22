@@ -14,6 +14,7 @@ const arrowUpCircle = require('./arrowUpCircle.svg');
 const dotCircle = require('./dotCircle.svg');
 const volumeUp = require('./volumeUp.svg');
 const volumeUpWhite = require('./volumeUpWhite.svg');
+const fire = require('./fire.svg');
 const ni2hao3 = require('./ni2hao3.m4a');
 const hao3 = require('./hao3.m4a');
 const ReactSwipe = require('react-swipe');
@@ -938,8 +939,9 @@ const LessonComplete = () => (
   <div className="full-screen bg-gray">
     <div className="main-container text-center">
       <h2>Lesson Complete! +10 XP</h2>
-      <h3>Combo Bonus! +5 XP</h3>
-      <div>1 day streak</div>
+      <h3 className="text-orange">Combo Bonus! +5 XP</h3>
+      <img src={fire} className="icon" />
+      <div className="text-orange">1 day streak</div>
       <div>You've met your daily goal!</div>
       <Link
         to="/lessons"
