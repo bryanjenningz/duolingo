@@ -980,9 +980,15 @@ const Lessons = () => (
         <div>Options</div>
       </div>
     </div>
-    <Link to="/lessons/1" className="text-normal text-black mt-5 d-block">
-      <div>Greeting 1</div>
-    </Link>
+    <div className="d-flex justify-center">
+      <Link
+        to="/lessons/1"
+        className="text-normal text-black mt-5 pt-3 d-block"
+      >
+        <div className="icon-container bg-green mb-1" />
+        <div className="text-center">Greeting 1</div>
+      </Link>
+    </div>
     <div className="bottom-bar">
       <div>Learn</div>
       <div>Profile</div>

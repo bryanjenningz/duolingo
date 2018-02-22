@@ -197,9 +197,6 @@
 .top-bar-back-button {
   height: 20px;
 }
-.mt-5 {
-  margin-top: 50px;
-}
 
 .language-container {
   height: 60px;
@@ -233,6 +230,9 @@
 .border-white {
   border: 2px solid white;
 }
+.mt-5 {
+  margin-top: 50px;
+}
 .mb-1 {
   margin-bottom: 10px;
 }
@@ -251,6 +251,9 @@
 }
 .ml-1 {
   margin-left: 10px;
+}
+.pt-3 {
+  padding-top: 30px;
 }
 .btn-icon {
   height: 20px;
