@@ -516,6 +516,8 @@ class MultipleChoice extends React.Component {
                       { selectedIndex: null, hasAnswered: false },
                       continueToNext
                     );
+                  } else {
+                    window.location.hash = '/lesson-complete';
                   }
                 } else {
                   this.setState(
@@ -662,6 +664,8 @@ class TapPairs extends React.Component {
                 correctAnswers < correctAnswersNeeded
               ) {
                 continueToNext();
+              } else {
+                window.location.hash = '/lesson-complete';
               }
             }}
           >
@@ -775,6 +779,8 @@ class SoundToPronunciation extends React.Component {
                       { selectedIndex: null, hasAnswered: false },
                       continueToNext
                     );
+                  } else {
+                    window.location.hash = '/lesson-complete';
                   }
                 } else {
                   this.setState(
@@ -886,6 +892,8 @@ class TranslateSentence extends React.Component {
                       { selectedIndex: null, hasAnswered: false },
                       continueToNext
                     );
+                  } else {
+                    window.location.hash = '/lesson-complete';
                   }
                 } else {
                   this.setState(
@@ -927,12 +935,19 @@ class TranslateSentence extends React.Component {
 }
 
 const LessonComplete = () => (
-  <div className="text-center">
-    <h2>Lesson Complete! +10 XP</h2>
-    <h3>Combo Bonus! +5 XP</h3>
-    <div>1 day streak</div>
-    <div>You've met your daily goal!</div>
-    <Link to="/lessons">CONTINUE</Link>
+  <div className="full-screen bg-gray">
+    <div className="main-container text-center">
+      <h2>Lesson Complete! +10 XP</h2>
+      <h3>Combo Bonus! +5 XP</h3>
+      <div>1 day streak</div>
+      <div>You've met your daily goal!</div>
+      <Link
+        to="/lessons"
+        className="btn text-normal text-white bg-green btn-block"
+      >
+        CONTINUE
+      </Link>
+    </div>
   </div>
 );
 
