@@ -926,6 +926,16 @@ class TranslateSentence extends React.Component {
   }
 }
 
+const LessonComplete = () => (
+  <div className="text-center">
+    <h2>Lesson Complete! +10 XP</h2>
+    <h3>Combo Bonus! +5 XP</h3>
+    <div>1 day streak</div>
+    <div>You've met your daily goal!</div>
+    <Link to="/lessons">CONTINUE</Link>
+  </div>
+);
+
 type QuestionState = {
   questions: QuestionData[];
   questionIndex: number;
@@ -1132,6 +1142,7 @@ const App = () => (
     <Route exact={true} path="/choose-goal" component={ChooseGoal} />
     <Route exact={true} path="/choose-path" component={ChoosePath} />
     <Route exact={true} path="/question" component={Question} />
+    <Route exact={true} path="/lesson-complete" component={LessonComplete} />
   </div>
 );
 
