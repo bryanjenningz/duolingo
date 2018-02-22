@@ -972,12 +972,15 @@ const LessonComplete = ({ streak = 1 }: { streak: number }) => (
 
 const Lessons = () => (
   <div>
-    <div>
+    <div className="top-bar">
+      <div>Menu</div>
       <div>Chinese</div>
-      <div>Streak</div>
-      <div>Options</div>
+      <div>
+        <div>Streak</div>
+        <div>Options</div>
+      </div>
     </div>
-    <Link to="/lessons/1">
+    <Link to="/lessons/1" className="text-normal text-black mt-5 d-block">
       <div>Greeting 1</div>
     </Link>
   </div>

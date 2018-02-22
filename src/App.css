@@ -26,6 +26,9 @@
   height: 5vh;
 }
 
+.d-block {
+  display: block;
+}
 .d-flex {
   display: flex;
 }
@@ -537,4 +540,17 @@
   width: 15vh;
   height: 15vh;
   background: #eee;
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 1px;
 }
