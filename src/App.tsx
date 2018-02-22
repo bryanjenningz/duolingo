@@ -970,6 +970,40 @@ const LessonComplete = ({ streak = 1 }: { streak: number }) => (
   </div>
 );
 
+const Lessons = () => (
+  <div>
+    <div>
+      <div>Chinese</div>
+      <div>Streak</div>
+      <div>Options</div>
+    </div>
+    <Link to="/lessons/1">
+      <div>Greeting 1</div>
+    </Link>
+  </div>
+);
+
+const LessonUnit = () => (
+  <div>
+    <div>
+      <div>Back</div>
+      <div>Greeting 1</div>
+    </div>
+    <div>
+      <div>
+        <div>Lesson 1 of 2</div>
+        <div>你, 好</div>
+        <div>REDO</div>
+      </div>
+      <div>
+        <div>Lesson 2 of 2</div>
+        <div>再见, 再, 见</div>
+        <div>START</div>
+      </div>
+    </div>
+  </div>
+);
+
 type QuestionState = {
   questions: QuestionData[];
   questionIndex: number;
@@ -1177,6 +1211,8 @@ const App = () => (
     <Route exact={true} path="/choose-path" component={ChoosePath} />
     <Route exact={true} path="/question" component={Question} />
     <Route exact={true} path="/lesson-complete" component={LessonComplete} />
+    <Route exact={true} path="/lessons" component={Lessons} />
+    <Route exact={true} path="/lessons/:lessonId" component={LessonUnit} />
   </div>
 );
 
