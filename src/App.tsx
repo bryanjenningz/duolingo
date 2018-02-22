@@ -940,9 +940,22 @@ const LessonComplete = () => (
     <div className="main-container text-center">
       <h2>Lesson Complete! +10 XP</h2>
       <h3 className="text-orange">Combo Bonus! +5 XP</h3>
-      <img src={fire} className="icon" />
+      <div className="d-flex justify-center align-center mb-3">
+        <div className="progress-circle big">
+          <div className="progress-circle-inner">
+            <img src={fire} className="icon" />
+          </div>
+        </div>
+      </div>
       <div className="text-orange">1 day streak</div>
-      <div>You've met your daily goal!</div>
+      <div className="d-flex my-3 space-around">
+        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
+          <div key={i} className="progress-circle">
+            <div className="progress-circle-inner">{day}</div>
+          </div>
+        ))}
+      </div>
+      <div className="mb-3">You've met your daily goal!</div>
       <Link
         to="/lessons"
         className="btn text-normal text-white bg-green btn-block"
