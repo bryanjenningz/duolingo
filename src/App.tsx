@@ -991,6 +991,22 @@ const Lessons = () => (
         <div className="text-center">Greeting 1</div>
       </Link>
     </div>
+    <div className="d-flex justify-center">
+      <Link
+        to="/lessons/2"
+        className="text-normal text-black mt-5 pt-3 d-block"
+      >
+        <div className="icon-container bg-blue mb-1 mr-1" />
+        <div className="text-center">Numbers</div>
+      </Link>
+      <Link
+        to="/lessons/3"
+        className="text-normal text-black mt-5 pt-3 d-block"
+      >
+        <div className="icon-container bg-green mb-1 ml-1" />
+        <div className="text-center">Name</div>
+      </Link>
+    </div>
     <div className="shadow-bottom-bar">
       <div>Learn</div>
       <div>Profile</div>
