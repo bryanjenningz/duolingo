@@ -1008,8 +1008,40 @@ const Lessons = () => (
       </Link>
     </div>
     <div className="shadow-bottom-bar">
-      <div>Learn</div>
-      <div>Profile</div>
+      <div className="text-blue">Learn</div>
+      <Link to="/profile" className="text-normal text-black">
+        Profile
+      </Link>
+      <div>Clubs</div>
+      <div>Shop</div>
+    </div>
+  </div>
+);
+
+const Profile = () => (
+  <div>
+    <div className="shadow-top-bar">
+      <div>Menu</div>
+      <div>Chinese</div>
+      <div>
+        <div>Streak</div>
+        <div>Options</div>
+      </div>
+    </div>
+    <div className="main-container d-flex flex-col justify-center vh-100 text-center">
+      <div className="mb-2">You need a profile to connect with friends</div>
+      <div className="mb-2 btn btn-block bg-blue text-white">
+        CREATE PROFILE
+      </div>
+      <div className=" btn btn-block bg-orange text-white">SIGN IN</div>
+    </div>
+    <div className="shadow-bottom-bar">
+      <Link to="/lessons" className="text-normal text-black">
+        Learn
+      </Link>
+      <Link to="/profile" className="text-normal text-blue">
+        Profile
+      </Link>
       <div>Clubs</div>
       <div>Shop</div>
     </div>
@@ -1332,6 +1364,7 @@ const App = () => (
     <Route exact={true} path="/lesson-complete" component={LessonComplete} />
     <Route exact={true} path="/lessons" component={Lessons} />
     <Route exact={true} path="/lessons/:lessonId" component={LessonUnit} />
+    <Route exact={true} path="/profile" component={Profile} />
   </div>
 );
 
