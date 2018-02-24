@@ -1015,12 +1015,22 @@ const LessonUnit = () => (
       <div className="lesson-card">
         <div>Lesson 1 of 2</div>
         <div>你, 好</div>
-        <div className="btn btn-block bg-green text-white">REDO</div>
+        <Link
+          to="/question/1"
+          className="btn btn-block bg-green text-white text-normal"
+        >
+          REDO
+        </Link>
       </div>
       <div className="lesson-card">
         <div>Lesson 2 of 2</div>
         <div>再见, 再, 见</div>
-        <div className="btn btn-block bg-green text-white">START</div>
+        <Link
+          to="/question/2"
+          className="btn btn-block bg-green text-white text-normal"
+        >
+          START
+        </Link>
       </div>
     </div>
   </div>
@@ -1115,12 +1125,19 @@ const defaultQuestions: QuestionData[] = [
   }
 ];
 
-const defaultQuestions2: QuestionData[] = [];
+const defaultQuestions2: QuestionData[] = [
+  {
+    type: 'CHARACTER_TO_PRONUNCIATION',
+    question: '见',
+    answers: ['jian4', 'hao3', 'zai4'],
+    correctIndex: 0
+  }
+];
 
 class Question extends React.Component {
   props: { questions: QuestionData[] };
   state: QuestionState = {
-    questionIndex: defaultQuestions.length - 1,
+    questionIndex: this.props.questions.length - 1,
     questionScores: Array(defaultQuestions.length).fill(0)
   };
   answerCorrectly() {
