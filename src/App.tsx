@@ -999,22 +999,28 @@ const Lessons = () => (
 );
 
 const LessonUnit = () => (
-  <div>
-    <div className="top-bar">
-      <div>Back</div>
-      <div>Greeting 1</div>
-      <div />
-    </div>
-    <div>
-      <div>
+  <div className="full-screen bg-green">
+    <div className="main-container">
+      <div className="top-bar text-white">
+        {isMobile() ? (
+          <Link to="/lessons">
+            <img className="top-bar-back-button" src={arrowLeft} />
+          </Link>
+        ) : (
+          <div />
+        )}
+        <div>Greeting 1</div>
+        <div />
+      </div>
+      <div className="lesson-card">
         <div>Lesson 1 of 2</div>
         <div>你, 好</div>
-        <div>REDO</div>
+        <div className="btn btn-block bg-green text-white">REDO</div>
       </div>
-      <div>
+      <div className="lesson-card">
         <div>Lesson 2 of 2</div>
         <div>再见, 再, 见</div>
-        <div>START</div>
+        <div className="btn btn-block bg-green text-white">START</div>
       </div>
     </div>
   </div>

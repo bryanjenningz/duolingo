@@ -563,3 +563,15 @@
   bottom: 0;
   height: 60px;
 }
+
+.lesson-card {
+  width: 200px;
+  background: white;
+  height: 40vh;
+  margin: 50px auto;
+  padding: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
