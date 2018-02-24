@@ -471,9 +471,13 @@
 
 .block-container {
   height: 70vh;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 .block {
   background: white;

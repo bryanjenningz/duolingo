@@ -17,6 +17,8 @@ const volumeUpWhite = require('./volumeUpWhite.svg');
 const fire = require('./fire.svg');
 const ni2hao3 = require('./ni2hao3.m4a');
 const hao3 = require('./hao3.m4a');
+const zai4 = require('./zai4.m4a');
+const jian4 = require('./jian4.m4a');
 const ReactSwipe = require('react-swipe');
 import { Route, Link } from 'react-router-dom';
 
@@ -1131,6 +1133,56 @@ const defaultQuestions2: QuestionData[] = [
     question: '见',
     answers: ['jian4', 'hao3', 'zai4'],
     correctIndex: 0
+  },
+  {
+    type: 'CHARACTER_TO_PRONUNCIATION',
+    question: '再',
+    answers: ['ni2hao3', 'zai4', 'jian4'],
+    correctIndex: 1
+  },
+  {
+    type: 'TAP_PAIRS',
+    pairs: ['你好', '见', 'jian4', 'hao3', 'ni2hao3', 'zai4', '再', '好'],
+    correctPairs: [
+      ['hao3', '好'],
+      ['ni2hao3', '你好'],
+      ['jian4', '见'],
+      ['zai4', '再']
+    ]
+  },
+  {
+    type: 'PRONUNCIATION_TO_CHARACTER',
+    question: 'zai4',
+    answers: ['好', '见', '再', '你好'],
+    correctIndex: 2
+  },
+  {
+    type: 'PRONUNCIATION_TO_CHARACTER',
+    question: 'jian4',
+    answers: ['好', '见', '再', '你好'],
+    correctIndex: 1
+  },
+  {
+    type: 'SOUND_TO_PRONUNCIATION',
+    sound: zai4,
+    answers: ['hao3', 'ni3', 'zai4', 'jian4'],
+    correctIndex: 2
+  },
+  {
+    type: 'SOUND_TO_PRONUNCIATION',
+    sound: jian4,
+    answers: ['jian4', 'ni2hao3', 'zai4', 'ni3'],
+    correctIndex: 0
+  },
+  {
+    type: 'TAP_PAIRS',
+    pairs: ['ni2hao3', '再', 'hao3', 'jian4', '好', '你好', '见', 'zai4'],
+    correctPairs: [
+      ['hao3', '好'],
+      ['ni2hao3', '你好'],
+      ['jian4', '见'],
+      ['zai4', '再']
+    ]
   }
 ];
 
