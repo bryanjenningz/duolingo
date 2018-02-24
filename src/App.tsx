@@ -1022,7 +1022,7 @@ const Profile = () => (
   <div>
     <div className="shadow-top-bar">
       <div>Menu</div>
-      <div>Chinese</div>
+      <div>Profile</div>
       <div>
         <div>Streak</div>
         <div>Options</div>
@@ -1042,7 +1042,37 @@ const Profile = () => (
       <Link to="/profile" className="text-normal text-blue">
         Profile
       </Link>
+      <Link to="/clubs" className="text-normal text-black">Clubs</Link>
+      <div>Shop</div>
+    </div>
+  </div>
+);
+
+const Clubs = () => (
+  <div>
+    <div className="shadow-top-bar">
+      <div>Menu</div>
       <div>Clubs</div>
+      <div>
+        <div>Streak</div>
+        <div>Options</div>
+      </div>
+    </div>
+    <div className="main-container d-flex flex-col justify-center vh-100 text-center">
+      <div className="mb-2">You need a profile to join and create a language club.</div>
+      <div className="mb-2 btn btn-block bg-blue text-white">
+        CREATE PROFILE
+      </div>
+      <div className=" btn btn-block bg-orange text-white">SIGN IN</div>
+    </div>
+    <div className="shadow-bottom-bar">
+      <Link to="/lessons" className="text-normal text-black">
+        Learn
+      </Link>
+      <Link to="/profile" className="text-normal text-black">
+        Profile
+      </Link>
+      <Link to="/clubs" className="text-normal text-blue">Clubs</Link>
       <div>Shop</div>
     </div>
   </div>
@@ -1365,6 +1395,7 @@ const App = () => (
     <Route exact={true} path="/lessons" component={Lessons} />
     <Route exact={true} path="/lessons/:lessonId" component={LessonUnit} />
     <Route exact={true} path="/profile" component={Profile} />
+    <Route exact={true} path="/clubs" component={Clubs} />
   </div>
 );
 
