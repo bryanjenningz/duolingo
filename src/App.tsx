@@ -1008,12 +1008,18 @@ const Lessons = () => (
       </Link>
     </div>
     <div className="shadow-bottom-bar">
-      <div className="text-blue">Learn</div>
+      <Link to="/lessons" className="text-normal text-blue">
+        Learn
+      </Link>
       <Link to="/profile" className="text-normal text-black">
         Profile
       </Link>
-      <div>Clubs</div>
-      <div>Shop</div>
+      <Link to="/clubs" className="text-normal text-black">
+        Clubs
+      </Link>
+      <Link to="/shop" className="text-normal text-black">
+        Shop
+      </Link>
     </div>
   </div>
 );
@@ -1042,8 +1048,12 @@ const Profile = () => (
       <Link to="/profile" className="text-normal text-blue">
         Profile
       </Link>
-      <Link to="/clubs" className="text-normal text-black">Clubs</Link>
-      <div>Shop</div>
+      <Link to="/clubs" className="text-normal text-black">
+        Clubs
+      </Link>
+      <Link to="/shop" className="text-normal text-black">
+        Shop
+      </Link>
     </div>
   </div>
 );
@@ -1059,7 +1069,9 @@ const Clubs = () => (
       </div>
     </div>
     <div className="main-container d-flex flex-col justify-center vh-100 text-center">
-      <div className="mb-2">You need a profile to join and create a language club.</div>
+      <div className="mb-2">
+        You need a profile to join and create a language club.
+      </div>
       <div className="mb-2 btn btn-block bg-blue text-white">
         CREATE PROFILE
       </div>
@@ -1072,8 +1084,46 @@ const Clubs = () => (
       <Link to="/profile" className="text-normal text-black">
         Profile
       </Link>
-      <Link to="/clubs" className="text-normal text-blue">Clubs</Link>
+      <Link to="/clubs" className="text-normal text-blue">
+        Clubs
+      </Link>
+      <Link to="/shop" className="text-normal text-black">
+        Shop
+      </Link>
+    </div>
+  </div>
+);
+
+const Shop = () => (
+  <div>
+    <div className="shadow-top-bar">
+      <div>Menu</div>
       <div>Shop</div>
+      <div>
+        <div>Streak</div>
+        <div>Options</div>
+      </div>
+    </div>
+    <div className="main-container d-flex flex-col justify-center vh-100 text-center">
+      <div className="mb-2">You need a profile to get items in the Shop</div>
+      <div className="mb-2 btn btn-block bg-blue text-white">
+        CREATE PROFILE
+      </div>
+      <div className=" btn btn-block bg-orange text-white">SIGN IN</div>
+    </div>
+    <div className="shadow-bottom-bar">
+      <Link to="/lessons" className="text-normal text-black">
+        Learn
+      </Link>
+      <Link to="/profile" className="text-normal text-black">
+        Profile
+      </Link>
+      <Link to="/clubs" className="text-normal text-black">
+        Clubs
+      </Link>
+      <Link to="/shop" className="text-normal text-blue">
+        Shop
+      </Link>
     </div>
   </div>
 );
@@ -1396,6 +1446,7 @@ const App = () => (
     <Route exact={true} path="/lessons/:lessonId" component={LessonUnit} />
     <Route exact={true} path="/profile" component={Profile} />
     <Route exact={true} path="/clubs" component={Clubs} />
+    <Route exact={true} path="/shop" component={Shop} />
   </div>
 );
 
