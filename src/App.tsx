@@ -335,7 +335,7 @@ const ChoosePath = () => (
     </div>
     <div className="main-container mt-5 d-flex flex-col space-around align-center vh-90">
       <Link
-        to="/question"
+        to="/question/1"
         className="flex-1 d-flex  btn w-100 text-normal text-black"
       >
         <img src={dotCircle} className="path-icon mr-2" />
@@ -1027,7 +1027,6 @@ const LessonUnit = () => (
 );
 
 type QuestionState = {
-  questions: QuestionData[];
   questionIndex: number;
   questionScores: number[];
 };
@@ -1116,9 +1115,11 @@ const defaultQuestions: QuestionData[] = [
   }
 ];
 
+const defaultQuestions2: QuestionData[] = [];
+
 class Question extends React.Component {
+  props: { questions: QuestionData[] };
   state: QuestionState = {
-    questions: defaultQuestions,
     questionIndex: defaultQuestions.length - 1,
     questionScores: Array(defaultQuestions.length).fill(0)
   };
@@ -1141,7 +1142,8 @@ class Question extends React.Component {
     });
   }
   continueToNext() {
-    const { questionIndex, questions, questionScores } = this.state;
+    const { questions } = this.props;
+    const { questionIndex, questionScores } = this.state;
     const incrementedQuestionIndex = (questionIndex + 1) % questions.length;
     const nextQuestionIndex =
       questions
@@ -1151,7 +1153,8 @@ class Question extends React.Component {
     this.setState({ questionIndex: nextQuestionIndex });
   }
   render() {
-    const { questions, questionIndex, questionScores } = this.state;
+    const { questions } = this.props;
+    const { questionIndex, questionScores } = this.state;
     const question = questions[questionIndex];
     if (
       question.type === 'CHARACTER_TO_PRONUNCIATION' ||
@@ -1231,7 +1234,16 @@ const App = () => (
     <Route exact={true} path="/choose-language" component={ChooseLanguage} />
     <Route exact={true} path="/choose-goal" component={ChooseGoal} />
     <Route exact={true} path="/choose-path" component={ChoosePath} />
-    <Route exact={true} path="/question" component={Question} />
+    <Route
+      exact={true}
+      path="/question/1"
+      component={() => <Question questions={defaultQuestions} />}
+    />
+    <Route
+      exact={true}
+      path="/question/2"
+      component={() => <Question questions={defaultQuestions2} />}
+    />
     <Route exact={true} path="/lesson-complete" component={LessonComplete} />
     <Route exact={true} path="/lessons" component={Lessons} />
     <Route exact={true} path="/lessons/:lessonId" component={LessonUnit} />
